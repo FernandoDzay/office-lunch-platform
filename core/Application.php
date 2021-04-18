@@ -10,6 +10,7 @@
         public static Helpers $app;
 
         public function __construct() {
+            new Config();
             self::$app = new Helpers();
         }
 

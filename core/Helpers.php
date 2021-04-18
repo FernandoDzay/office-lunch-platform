@@ -4,14 +4,15 @@
 
     class Helpers {
 
-        public $classname;
+        //public $classname;
 
         public function __construct() {
-
-            $classnameObject = "GlobalFunctions";
+            $this->setFunctions();
+            
+            /* $classnameObject = "GlobalFunctions";
             $classname = "App\GlobalFunctions\\"."GlobalFunctions";
             
-            $this->$classnameObject = new $classname();
+            $this->$classnameObject = new $classname(); */
 
         }
 
@@ -22,16 +23,17 @@
             return new $classname();
         }
 
+        private function setFunctions() {
+            $functions = Config::getFunctions();
+            foreach($functions as $classname => $callback) {
+                $this->$classname = new $callback['class'];
+            }
+        }
+
 
         
 
 
-
-
-        private function getConfig() {
-            require __DIR__."/config/web.php";
-            return $config;
-        }
 
     }
 

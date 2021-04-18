@@ -19,6 +19,10 @@
             return self::$config['layout'];
         }
 
+        public static function getFunctions() {
+            return self::$config['components']['functions'];
+        }
+
 
         private function setConfig() {
             ob_start();
@@ -26,6 +30,7 @@
             self::$config = $config;
             ob_clean();
         }
+        
 
 
 

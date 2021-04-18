@@ -4,16 +4,16 @@
     namespace App\GlobalFunctions;
 
 
-    class GlobalFunctions {
+    class DataBaseFunctions {
 
         public function __construct() {
-            echo "se creó global functions";
+            echo "se creó database functions";
         }
 
 
-        public function sayHello() {
+        /* public function sayHello() {
             echo "saying hello from GlobalFunctions";
-        }
+        } */
 
     }
 

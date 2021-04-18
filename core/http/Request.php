@@ -14,7 +14,6 @@ class Request {
 
 
     public function __construct() {
-        new Config();
         $this->router = new Router();
         $this->setController();
         $this->setMethod();
