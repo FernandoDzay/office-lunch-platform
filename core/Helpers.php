@@ -1,6 +1,6 @@
 <?php
 
-    namespace App;
+    namespace App\core;
 
     class Helpers {
 
@@ -9,7 +9,7 @@
         public function __construct() {
 
             $classnameObject = "GlobalFunctions";
-            $classname = "App\http\GlobalFunctions\\"."GlobalFunctions";
+            $classname = "App\GlobalFunctions\\"."GlobalFunctions";
             
             $this->$classnameObject = new $classname();
 

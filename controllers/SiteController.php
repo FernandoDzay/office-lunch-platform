@@ -1,8 +1,8 @@
 <?php
 
-namespace App\http\Controllers;
+namespace App\controllers;
 
-use App\http\Controller;
+use App\core\base\Controller;
 
 class SiteController extends Controller {
 

@@ -1,7 +1,7 @@
 
 
 <?php
-    use App\http\Application;
+    //use App\core\Application;
 
     //Application::$app->GlobalFunctions->sayHello();
 

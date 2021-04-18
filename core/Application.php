@@ -1,13 +1,12 @@
 <?php
 
-    namespace App\http;
+    namespace App\core;
 
-    use App\Helpers;
-
+    use App\core\http\Request;
+    use App\core\http\Response;
 
     class Application {
 
-        
         public static Helpers $app;
 
         public function __construct() {

@@ -1,6 +1,6 @@
 <?php
 
-    use App\http\Application;
+    use App\core\Application;
     
 ?>
 
@@ -18,7 +18,7 @@
 <body>
 
 <header>
-    <h1>Este es el headers</h1>
+    <h1>Este es el header</h1>
 </header>
 
 <main>

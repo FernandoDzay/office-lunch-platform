@@ -1,7 +1,7 @@
 <?php
 
 
-    namespace App\http\GlobalFunctions;
+    namespace App\GlobalFunctions;
 
 
     class GlobalFunctions {

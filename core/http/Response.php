@@ -1,6 +1,6 @@
 <?php
 
-    namespace App\http;
+    namespace App\core\http;
 
     class Response {
 
@@ -14,7 +14,7 @@
 
         public function send() {
             
-            $controllerClass = "App\http\Controllers\\{$this->controller}Controller";
+            $controllerClass = "App\controllers\\{$this->controller}Controller";
             $controllerMethod = "action$this->method";
 
             call_user_func([new $controllerClass, $controllerMethod]);

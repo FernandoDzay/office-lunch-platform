@@ -1,6 +1,8 @@
 <?php
 
-namespace App\http;
+namespace App\core\http;
+
+use App\core\Config;
 
 class Request {
 
@@ -12,8 +14,8 @@ class Request {
 
 
     public function __construct() {
-        $this->setConfig();
-        $this->router = new Router($this->config);
+        new Config();
+        $this->router = new Router();
         $this->setController();
         $this->setMethod();
         $this->response = new Response($this->controller, $this->method);
@@ -21,13 +23,13 @@ class Request {
 
 
 
-    public function setConfig() {
+    /* public function setConfig() {
         require __DIR__."/../config/web.php";
         $this->config = $config;
-    }
+    } */
 
     public function setController() {
-        $route = $this->router->getConfigRoute( $this->getUrl() );
+        $route = $this->router->getRoute( $this->getUrl() );
         if( is_string($route) ) {
             $this->controller = explode("/", $route)[0];
         }
@@ -38,7 +40,7 @@ class Request {
     }
     
     public function setMethod() {
-        $route = $this->router->getConfigRoute( $this->getUrl() );
+        $route = $this->router->getRoute( $this->getUrl() );
         if( is_string($route) ) {
             $this->method = explode("/", $route)[1];
         }
