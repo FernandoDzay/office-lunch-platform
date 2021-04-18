@@ -1,6 +1,10 @@
 
-<h4>Contenido de homes</h4>
-<p><?= $name ?></p>
-<p><?= $lastname ?></p>
 
+<?php
+    use App\http\Application;
 
+    //Application::$app->GlobalFunctions->sayHello();
+
+?>
+
+<h4>Contenido de home</h4>

@@ -31,19 +31,21 @@ class Controller {
             }
         }
 
+
         ob_start();
         require __DIR__."/../../views/site/$view.php";
         $content = ob_get_clean();
-
+        
         ob_start();
+        
         if( isset($this->layout) ) {
             require __DIR__."/../../views/layouts/$this->layout.php";
         }
         else {
             require __DIR__."/../../views/layouts/".$this->getConfigLayout().".php";
         }
-
-        return ob_get_clean();
+      
+        return ob_get_contents();
     }
 
 

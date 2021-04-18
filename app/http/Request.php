@@ -63,7 +63,7 @@ class Request {
 
 
 
-    public function send() {
+    public function sendResponse() {
         $this->response->send();
     }
 

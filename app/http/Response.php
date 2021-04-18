@@ -13,11 +13,11 @@
         }
 
         public function send() {
-
+            
             $controllerClass = "App\http\Controllers\\{$this->controller}Controller";
             $controllerMethod = "action$this->method";
 
-            echo call_user_func([new $controllerClass, $controllerMethod]);
+            call_user_func([new $controllerClass, $controllerMethod]);
         }
 
     }

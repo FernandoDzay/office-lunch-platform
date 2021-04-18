@@ -4,9 +4,22 @@
 
     class Helpers {
 
+        public $classname;
 
         public function __construct() {
-            echo "se creo helpers";
+
+            $classnameObject = "GlobalFunctions";
+            $classname = "App\http\GlobalFunctions\\"."GlobalFunctions";
+            
+            $this->$classnameObject = new $classname();
+
+        }
+
+
+        public function getInstance() {
+            $classname = "http\GlobalFunctions\\".$this->classname;
+
+            return new $classname();
         }
 
 

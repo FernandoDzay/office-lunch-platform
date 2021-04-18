@@ -11,12 +11,13 @@
 
     require_once __DIR__."/../vendor/autoload.php";
 
-    use App\http\Request;
+    use App\http\Application;
 
-    $request = new Request();
+    $application = new Application();
 
-    
-    $request->send();
+    $application->run();
+
+
 
 
 ?>

@@ -1,3 +1,11 @@
+<?php
+
+    use App\http\Application;
+    
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +18,7 @@
 <body>
 
 <header>
-    <h1>Este es el header</h1>
+    <h1>Este es el headers</h1>
 </header>
 
 <main>
