@@ -7,7 +7,7 @@
     class GlobalFunctions {
 
         public function __construct() {
-            echo "se creó global functions";
+            
         }
 
 

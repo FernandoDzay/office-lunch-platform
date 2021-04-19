@@ -49,7 +49,7 @@ class Controller {
     private function printLayout($content) {
         ob_start();
 
-        if( isset($this->$layout) ) {
+        if( isset($this->layout) ) {
             require __DIR__."/../../views/layouts/$this->layout.php";
         }
         else {

@@ -7,7 +7,7 @@
     class DataBaseFunctions {
 
         public function __construct() {
-            echo "se creó database functions";
+            
         }
 
 

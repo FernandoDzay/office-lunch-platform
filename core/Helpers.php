@@ -4,15 +4,9 @@
 
     class Helpers {
 
-        //public $classname;
-
         public function __construct() {
+
             $this->setFunctions();
-            
-            /* $classnameObject = "GlobalFunctions";
-            $classname = "App\GlobalFunctions\\"."GlobalFunctions";
-            
-            $this->$classnameObject = new $classname(); */
 
         }
 

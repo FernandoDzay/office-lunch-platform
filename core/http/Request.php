@@ -21,12 +21,6 @@ class Request {
     }
 
 
-
-    /* public function setConfig() {
-        require __DIR__."/../config/web.php";
-        $this->config = $config;
-    } */
-
     public function setController() {
         $route = $this->router->getRoute( $this->getUrl() );
         if( is_string($route) ) {
