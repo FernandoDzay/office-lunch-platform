@@ -13,6 +13,7 @@ $config = [
                 [ 'pattern' => '/', 'route' => 'site/index', 'defaults' => ['code' => 'home']],
                 [ 'pattern' => '/contact', 'route' => 'contact/index', 'defaults' => ['code' => 'home']],
                 [ 'pattern' => '/tours', 'route' => 'tours/index', 'defaults' => ['code' => 'home']],
+                [ 'pattern' => '/login', 'route' => 'site/login', 'defaults' => ['code' => 'login']],
             ],
         ]
     ]

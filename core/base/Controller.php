@@ -11,15 +11,10 @@ class Controller {
     protected $layout;
 
     public function __construct() {
-
+        
     }
 
     
-
-    public function setLayout($layout) {
-        $this->layout = $layout;
-    }
-
 
 
     public function render($view, array $params = []) {
@@ -32,7 +27,9 @@ class Controller {
 
 
 
-
+    public function setLayout($layout) {
+        $this->layout = $layout;
+    }
     
     private function getViewFile($view, $params) {
         if( !empty($params) ) {
@@ -42,7 +39,12 @@ class Controller {
         }
 
         ob_start();
-        require __DIR__."/../../views/site/$view.php";
+        if( $this->aPathIsSet($view) ) {
+            require __DIR__."/../../views".$view.".php";
+        }
+        else {
+            require __DIR__."/../../views/".$this->getFolderName()."/$view.php";
+        }
         return ob_get_clean();
     }
 
@@ -55,7 +57,26 @@ class Controller {
         else {
             require __DIR__."/../../views/layouts/".Config::getLayout().".php";
         }
+
         return ob_get_contents();
+    }
+
+    private function getFolderName() {
+        $folderName = get_class($this);
+
+        $folderName = explode("\\", $folderName);
+
+        $folderName = $folderName[count($folderName) - 1];
+
+        $folderName = substr($folderName, 0, -10);
+
+        $folderName = strtolower($folderName);
+
+        return $folderName;
+    }
+
+    private function aPathIsSet($view) {
+        return !(strpos($view, "/") === false);
     }
     
 }

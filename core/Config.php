@@ -23,6 +23,10 @@
             return self::$config['components']['functions'];
         }
 
+        public static function beforeRequestIsSet() {
+            return (isset(self::$config['beforeRequest']) && self::$config['beforeRequest'] != '');
+        }
+
 
         private function setConfig() {
             ob_start();
