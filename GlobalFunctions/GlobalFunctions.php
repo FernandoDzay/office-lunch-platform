@@ -12,7 +12,7 @@
 
 
         public function sayHello() {
-            echo "saying hello from GlobalFunctions";
+            echo "saying hello from GlobalFunctidasdons";
         }
 
     }
