@@ -1,11 +1,11 @@
-<style>
-        body {
-            background-color: black;
-        }
-        * {
-            color: white;
-        }
-    </style>
+<!-- <style>
+    body {
+        background-color: black;
+    }
+    * {
+        color: white;
+    }
+</style> -->
 
 <?php
     ini_set('display_errors', 1);

@@ -20,8 +20,8 @@
 
         public function run() {
 
-            /* $this->response->executeController($this->controller, $this->method);
-            return false; */
+            //$this->response->executeController($this->controller, $this->method);
+            return true;
         }
 
 
