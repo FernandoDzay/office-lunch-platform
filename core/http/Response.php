@@ -27,6 +27,11 @@
 
         }
 
+        public static function notFound() {
+            http_response_code ( 404 );
+            exit;
+        }
+        
 
         private function runHandleRequest() {
             $handleRequestClass = "App\HandleRequest\HandleRequest";

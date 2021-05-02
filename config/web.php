@@ -1,8 +1,11 @@
 <?php
 
+require "db.php";
 
 $config = [
     'layout' => 'main',
+    'db' => $db,
+    'backendApi' => false,
     'components' => [
         'functions' => [
             'GlobalFunctions' => [ 'class' => 'App\GlobalFunctions\GlobalFunctions'],
@@ -11,8 +14,8 @@ $config = [
         ],
         'urlManager' => [
             'rules' => [
-                [ 'pattern' => '/', 'route' => 'site/index'],
-                [ 'pattern' => '/login', 'route' => 'site/login'],
+                [ 'pattern' => '/', 'route' => 'site/index', 'defaults' => ['code' => 'login']],
+                [ 'pattern' => '/login', 'route' => 'site/login', 'defaults' => ['code' => 'login']],
             ],
         ]
     ]

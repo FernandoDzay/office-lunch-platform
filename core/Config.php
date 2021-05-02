@@ -27,6 +27,19 @@
             return (isset(self::$config['beforeRequest']) && self::$config['beforeRequest'] != '');
         }
 
+        public static function getDbParameters() {
+            if( isset(self::$config['db']) ) {
+                return self::$config['db'];
+            }
+            else {
+                return false;
+            }
+        }
+
+        public static function getBackendApi() {
+            return self::$config['backendApi'];
+        }
+
 
         private function setConfig() {
             ob_start();

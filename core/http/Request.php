@@ -27,6 +27,7 @@ class Request {
             $this->controller = explode("/", $route)[0];
         }
         else {
+            Response::notFound();
             echo "<h1>Not found</h1>";
             die();
         }
@@ -38,6 +39,7 @@ class Request {
             $this->method = explode("/", $route)[1];
         }
         else {
+            Response::notFound();
             echo "<h1>Not found</h1>";
             die();
         }
