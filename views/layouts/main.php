@@ -11,7 +11,7 @@
 <body>
 
     <header>
-        <h1>este es el header    ||||||||</h1>
+        
     </header>
     
     <main>
@@ -21,7 +21,7 @@
     </main>
 
     <footer>
-        <h1>este es el footer   ||||||||</h1>
+        
     </footer>
 
 </body>
