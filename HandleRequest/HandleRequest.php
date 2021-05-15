@@ -20,6 +20,17 @@
 
         public function run() {
 
+            if($_SERVER['REQUEST_URI'] == "/login" || $_SERVER['REQUEST_URI'] == "/register") {
+                return true;
+            }
+
+            if(isset($_SESSION['user_id']) && $_SESSION['user_id'] != "") {
+                return true;
+            }
+            else {
+                header('Location: /login');
+                return true;
+            }
             //$this->response->executeController($this->controller, $this->method);
             return true;
         }

@@ -14,8 +14,17 @@ $config = [
         ],
         'urlManager' => [
             'rules' => [
-                [ 'pattern' => '/', 'route' => 'site/index', 'defaults' => ['code' => 'login']],
-                [ 'pattern' => '/login', 'route' => 'site/login', 'defaults' => ['code' => 'login']],
+                [ 'pattern' => '/', 'route' => 'site/home'],
+                [ 'pattern' => '/login', 'route' => 'site/login'],
+                [ 'pattern' => '/register', 'route' => 'site/register'],
+                [ 'pattern' => '/insert-food-of-the-day', 'route' => 'admin/inserttodaysfood'],
+                [ 'pattern' => '/edit-food', 'route' => 'admin/editfood'],
+                
+
+
+
+                [ 'pattern' => '/login-user', 'route' => 'login/login'],
+                [ 'pattern' => '/register-user', 'route' => 'login/register'],
             ],
         ]
     ]

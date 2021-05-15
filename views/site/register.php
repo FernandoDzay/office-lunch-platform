@@ -1,6 +1,6 @@
 <div class="card card-body card-form mb-3">
-    <h1>Inicia Sesión!</h1>
-    <form action="/login-user" method="POST">
+    <h1>Regístrate!</h1>
+    <form action="/register-user" method="POST">
 
         <label for="username" class="form-label">Username</label>
         <input type="text" name="username" class="form-control mb-3">
@@ -16,7 +16,4 @@
 <?php if( isset($text) ): ?>
     <p class="text-danger bg-white"><?= $text ?></p>
 <?php endif; ?>
-
-
-
 
