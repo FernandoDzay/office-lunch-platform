@@ -3,7 +3,8 @@
     <p class="mb-3"><?= $data['food'] ?></p>
     <form method="POST">
         <input type="hidden" name="food_id" value="<?= $data['id'] ?>">
-        <button class="btn btn-primary mb-3"><?= $data['btn_text'] ?></button>
+        <input type="hidden" name="food" value="<?= $data['food'] ?>">
+        <button name="add_food" class="btn btn-primary mb-3"><?= $data['btn_text'] ?></button>
     </form>
     <?php if(isset($data['delete_btn'])): ?>
         <a href="/insert-food-of-the-day?delete_id=<?= $data['id'] ?>"><button class="btn btn-danger mb-3">Quitar del menú</button></a>

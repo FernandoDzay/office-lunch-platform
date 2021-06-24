@@ -4,6 +4,7 @@
 
     use App\core\base\Controller;
     use App\core\http\REST;
+    use App\core\Application;
 
 
     class AdminController extends Controller {
@@ -115,7 +116,6 @@
             return $this->render('insert-food');
         }
 
-
         public function actionEditfood() {
             
             if(!isset($_REQUEST['id'])) {
@@ -143,6 +143,91 @@
             }
 
         }
+
+        public function actionInsertextras() {
+
+            if(isset($_REQUEST['save_food'])) {
+                $url = "http://local.api-office-lunch/insert-extra";
+
+                $extra = [
+                    'extra' => $_REQUEST['extra'],
+                    'price' => $_REQUEST['price']
+                ];
+
+                $rest = new REST();
+
+                $rest->post($url, $extra);
+                header("Location: /insert-extras");
+            }
+
+            if(isset($_REQUEST['delete'])) {
+                $url = "http://local.api-office-lunch/delete-extra";
+                $rest = new REST();
+                $extras = $rest->delete($url, ['id' => $_REQUEST['id']]);
+                header("Location: /insert-extras");
+            }
+
+            $url = "http://local.api-office-lunch/get-extras";
+
+            $rest = new REST();
+
+            $extras = $rest->get($url);
+
+            $extras = json_decode($extras, true);
+
+            return $this->render("insert-extras", ['extras' => $extras]);
+        }
+
+        public function actionEditextra() {
+
+            if(isset($_REQUEST['submit_edit'])) {
+                $url = "http://local.api-office-lunch/edit-extra";
+
+                $extra = [
+                    'id' => $_REQUEST['id'],
+                    'extra' => $_REQUEST['extra'],
+                    'price' => $_REQUEST['price']
+                ];
+
+                $rest = new REST();
+
+                $rest->put($url, $extra);
+                header("Location: /insert-extras");
+            }
+
+            $extra = [
+                'id' => $_REQUEST['id'],
+                'extra' => $_REQUEST['extra'],
+                'price' => $_REQUEST['price']
+            ];
+
+            return $this->render('edit-extra', $extra);
+
+            
+
+        }
+
+        public function actionGroups() {
+
+            if(isset($_REQUEST['add_user_group'])) {
+                Application::$app->GlobalFunctions->addUserGroup($_REQUEST['user_id'], $_REQUEST['group_id']);
+            }
+
+            $users = Application::$app->GlobalFunctions->getUsers();
+            $groups = Application::$app->GlobalFunctions->getGroups();
+            $groups_tables_data = Application::$app->GlobalFunctions->getGroupsTablesData();
+
+
+            $data = [
+                'users' => $users,
+                'groups' => $groups,
+                'groups_tables_data' => $groups_tables_data,
+            ];
+
+
+            return $this->render("groups", $data);
+        }
+
 
 
     }

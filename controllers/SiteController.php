@@ -4,6 +4,7 @@ namespace App\controllers;
 
 use App\core\base\Controller;
 use App\core\http\REST;
+use App\core\Application;
 
 
 class SiteController extends Controller {
@@ -12,26 +13,34 @@ class SiteController extends Controller {
     public function actionHome() {
 
         if(!isset($_SESSION['user_id'])) {
-            header("Location: /login");            
+            header("Location: /login");
         }
 
-        if(isset($_REQUEST['food_id'])) {
-            
+        if(isset($_REQUEST['add_food'])) {
+            Application::$app->GlobalFunctions->addUserOrder( $_SESSION['user_id'], $_REQUEST['food'] );
+            header("Location: /");
+        }
+        if(isset($_REQUEST['add_extra'])) {
+            Application::$app->GlobalFunctions->addUserOrder( $_SESSION['user_id'], $_REQUEST['extra'], 1 );
+            header("Location: /");
+        }
+        if(isset($_REQUEST['delete_order'])) {
+            Application::$app->GlobalFunctions->deleteOrder( $_REQUEST['order_id'] );
+            header("Location: /");
         }
 
 
 
 
-        $url = "http://local.api-office-lunch/menu";
-        $rest = new REST();
-        $response = $rest->get($url);
-
-        $menu = json_decode($response, true);
-
+        $menu = Application::$app->GlobalFunctions->getMenu();
+        $extras = Application::$app->GlobalFunctions->getExtras();
+        $orders = Application::$app->GlobalFunctions->getUserOrders();
 
         $data = [
             'user_id' => $_SESSION['user_id'],
             'menu' => $menu,
+            'extras' => $extras,
+            'orders' => $orders,
         ];
 
         return $this->render('home', $data);

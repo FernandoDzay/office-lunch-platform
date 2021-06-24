@@ -10,7 +10,7 @@ $config = [
         'functions' => [
             'GlobalFunctions' => [ 'class' => 'App\GlobalFunctions\GlobalFunctions'],
             'DataBaseFunctions' => [ 'class' => 'App\GlobalFunctions\DataBaseFunctions'],
-            'Prueba' => [ 'class' => 'App\GlobalFunctions\Prueba'],
+            'HeaderFunctions' => [ 'class' => 'App\GlobalFunctions\HeaderFunctions'],
         ],
         'urlManager' => [
             'rules' => [
@@ -18,7 +18,10 @@ $config = [
                 [ 'pattern' => '/login', 'route' => 'site/login'],
                 [ 'pattern' => '/register', 'route' => 'site/register'],
                 [ 'pattern' => '/insert-food-of-the-day', 'route' => 'admin/inserttodaysfood'],
+                [ 'pattern' => '/insert-extras', 'route' => 'admin/insertextras'],
                 [ 'pattern' => '/edit-food', 'route' => 'admin/editfood'],
+                [ 'pattern' => '/edit-extra', 'route' => 'admin/editextra'],
+                [ 'pattern' => '/groups', 'route' => 'admin/groups'],
                 
 
 
