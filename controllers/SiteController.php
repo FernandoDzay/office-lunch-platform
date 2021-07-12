@@ -24,23 +24,15 @@ class SiteController extends Controller {
             Application::$app->GlobalFunctions->addUserOrder( $_SESSION['user_id'], $_REQUEST['extra'], 1 );
             header("Location: /");
         }
-        if(isset($_REQUEST['delete_order'])) {
-            Application::$app->GlobalFunctions->deleteOrder( $_REQUEST['order_id'] );
-            header("Location: /");
-        }
-
-
 
 
         $menu = Application::$app->GlobalFunctions->getMenu();
         $extras = Application::$app->GlobalFunctions->getExtras();
-        $orders = Application::$app->GlobalFunctions->getUserOrders();
 
         $data = [
             'user_id' => $_SESSION['user_id'],
             'menu' => $menu,
             'extras' => $extras,
-            'orders' => $orders,
         ];
 
         return $this->render('home', $data);
@@ -85,6 +77,17 @@ class SiteController extends Controller {
             return $this->render('register');
         }
         
+    }
+
+    public function actionTodaysorder() {
+
+        if(isset($_REQUEST['delete_order'])) {
+            Application::$app->GlobalFunctions->deleteOrder( $_REQUEST['order_id'] );
+        }
+
+        $orders = Application::$app->GlobalFunctions->getUserOrders();
+
+        return $this->render('todays-order', ['orders' => $orders]);
     }
 
 }

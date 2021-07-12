@@ -14,18 +14,33 @@ $config = [
         ],
         'urlManager' => [
             'rules' => [
+
+
+
+                //  SITE
                 [ 'pattern' => '/', 'route' => 'site/home'],
-                [ 'pattern' => '/login', 'route' => 'site/login'],
+                [ 'pattern' => '/login', 'route' => 'site/login'], 
                 [ 'pattern' => '/register', 'route' => 'site/register'],
+                [ 'pattern' => '/todays-order', 'route' => 'site/todaysorder'],
+
+
+                // ORDERS
+                [ 'pattern' => '/my-week-orders', 'route' => 'orders/myweekorders'],
+                [ 'pattern' => '/week-orders', 'route' => 'orders/weekorders'],
+                
+                
+                //  ADMIN
                 [ 'pattern' => '/insert-food-of-the-day', 'route' => 'admin/inserttodaysfood'],
                 [ 'pattern' => '/insert-extras', 'route' => 'admin/insertextras'],
                 [ 'pattern' => '/edit-food', 'route' => 'admin/editfood'],
                 [ 'pattern' => '/edit-extra', 'route' => 'admin/editextra'],
                 [ 'pattern' => '/groups', 'route' => 'admin/groups'],
+                [ 'pattern' => '/payments', 'route' => 'admin/payments'],
+                
                 
 
 
-
+                // LOGIN
                 [ 'pattern' => '/login-user', 'route' => 'login/login'],
                 [ 'pattern' => '/register-user', 'route' => 'login/register'],
             ],

@@ -14,11 +14,11 @@
 
 	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 	<link rel="icon" href="/favicon.ico" type="image/x-icon">
-	<link rel="stylesheet" href="/css/bootstrap.css">
 	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/custom.css">
 
 </head>
-<body>
+<body class="cover" style="background-image: url(./assets/img/loginFont.jpg);">
 
 	<header>
 		<?php
@@ -26,13 +26,9 @@
 		?>
 	</header>
 
-	<div class="container">
-    	<div class="row justify-content-center">
-        	<div class="col-5">
-				<?= $content ?>
-			</div>
-		</div>
-	</div>
+
+	<?= $content ?>
+
 
 	
 	<!--====== Scripts -->

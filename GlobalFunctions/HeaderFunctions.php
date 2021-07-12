@@ -4,13 +4,14 @@
 
     use App\core\http\REST;
 
-    class HeaderFunctions {
+    class HeaderFunctions extends GlobalFunctions {
 
 
         public function getHeaderData() {
 
             $data = [
                 'username' => $this->getUserName(),
+                'user_orders' => $this->getUserOrders(),
             ];
 
             return $data;

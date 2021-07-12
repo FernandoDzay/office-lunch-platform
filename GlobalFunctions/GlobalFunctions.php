@@ -110,7 +110,23 @@
             return json_decode($data, true);
         }
 
+        public function getMyWeekOrders() {
+            $rest = new REST();
+            $url = "http://local.api-office-lunch/get-week-orders-by-user";
 
+            $data = $rest->get($url, ['user_id' => $_SESSION['user_id']]);
+
+            return json_decode($data, true);
+        }
+
+        public function getWeekOrders() {
+            $rest = new REST();
+            $url = "http://local.api-office-lunch/get-week-orders";
+
+            $data = $rest->get($url);
+
+            return json_decode($data, true);
+        }
 
 
 

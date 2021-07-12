@@ -228,6 +228,47 @@
             return $this->render("groups", $data);
         }
 
+        public function actionPayments() {
+            $orders = Application::$app->GlobalFunctions->getWeekOrders();
+            $users_array = Application::$app->GlobalFunctions->getUsers();
+
+            $users = [];
+            foreach($users_array as $key => $user) {
+                if( !isset($users[$user['username']]) ) {
+                    $users[$user['username']] = 0;
+                }
+            }
+
+            $prices_by_user = [
+                'lunes' => [],
+                'martes' => [],
+                'miercoles' => [],
+                'jueves' => [],
+                'viernes' => [],
+            ];
+
+            foreach($prices_by_user as $day => $value) {
+                $prices_by_user[$day] = $users;
+            }
+
+            foreach($prices_by_user as $day => $values) {
+                foreach($users as $user => $user_total) {
+                    if( isset($orders[$day][$user]) ) {
+
+                        foreach($orders[$day][$user] as $key => $tmp ) {
+                            $prices_by_user[$day][$user] += $tmp['price'];
+                        }
+                        
+                    }
+                }
+            }
+
+            /* echo "<pre>";
+            print_r($prices_by_user);
+            die(); */
+         
+            return $this->render('payments', ['prices_by_user' => $prices_by_user]);
+        }
 
 
     }

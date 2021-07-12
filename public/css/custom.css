@@ -1,0 +1,193 @@
+.logInForm .form-group .form-control {
+    color: #eeeeee;
+}
+.btn, .input-group-btn .btn  {
+    will-change: initial;
+}
+
+.full-box.custom-full-box {
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.wrapper{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+  
+.submit-button {
+    width: 170px;
+    height: 40px;
+    font-size: 14px;
+    padding-top: 7px;
+    letter-spacing: 1px;
+    border: 2px solid #009688;
+    background: #fff;
+    color: #009688;
+    border-radius: 40px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all .35s;
+    margin-bottom: 20px;
+}
+  
+.submit-button:hover{
+    background: #009688;
+    color: #fff;
+}
+  
+.submit-button span{
+    opacity: 1;
+    visibility: visible;
+    transition: all .35s;
+}
+
+.submit-button.delete {
+    border: 2px solid #d9534f;
+    color: #d9534f;
+}
+  
+.submit-button.delete:hover{
+    background: #d9534f;
+    color: #fff;
+}
+  
+.success{
+    position: relative;
+    top: -12px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    z-index: 1;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .35s;
+}
+  
+.success svg {
+    width: 20px;
+    height: 20px;
+    fill: #009688;
+    transform-origin: 50% 50%;
+    transform: translateY(-50%) rotate(0deg) scale(0);
+    transition: all .35s;
+}
+.submit-button.delete .success svg {
+    fill: #d9534f;
+}
+.success svg:hover, .submit-button.delete .success svg:hover {
+    fill: white;
+}
+  
+.submit-button.is_active{
+    width: 40px;
+    height: 40px;
+}
+  
+.submit-button.is_active .success{
+    opacity: 1;
+    visibility: visible;
+}
+  
+.submit-button.is_active .success svg{
+    margin-top: 10%;
+    transform: translateY(-50%) rotate(720deg) scale(1);
+}
+  
+.submit-button.is_active span{
+    opacity: 0;
+    visibility: hidden;
+}
+
+
+/* ------- Food card ------- */
+
+.food-card {
+    padding: 0 15px;
+    padding-bottom: 30px;
+    position: relative;
+}
+.food-card .btn-warning {
+    background-color: #f0ad4e !important;
+}
+.food-card .btn-warning:hover {
+    background-color: #f0ad4ee3 !important;
+}
+.food-card.extra-padding {
+    padding-top: 25px;
+}
+.food-card .abs-container {
+    position: absolute;
+    top: 0;
+    right: 15px;
+    display: flex;
+
+}
+.food-card .abs-container button {
+    margin: 0;
+}
+.food-card .title {
+    height: 50px;
+    margin-bottom: 0;
+}
+.food-card img {
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    margin-bottom: 15px;
+}
+.food-card .content {
+    width: 300px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.16);
+    border-radius: 2px;
+}
+.food-card img {
+    width: 100%;
+}
+.food-card.food-card.extra-padding svg {
+    position: relative;
+    top: -39px;
+}
+/* ------------------------- */
+
+.zmdi::before {
+    font-size: 20px;
+}
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    vertical-align: middle;
+}
+
+.dashboard-sideBar-Menu {
+    margin-bottom: 40px;
+}
+.side-bar-orders {
+    padding: 0 15px;
+}
+.side-bar-orders p, .side-bar-orders li {
+    color: white;
+}
+
+input[type=checkbox] {
+    width: 25px;
+    height: 25px;
+}
+
+label.checkbox {
+    margin-bottom: 10px !important;
+    font-size: 16px !important;
+    position: relative !important;
+    top: 0 !important;
+}
+
+.edit-food-form .img-container {
+    display: flex;
+    justify-content: center;
+}
+.edit-food-form .img-container img {
+    width: 100%;
+    max-width: 200px;
+}

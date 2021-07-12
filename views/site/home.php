@@ -1,99 +1,73 @@
 <?php
 
     use App\widgets\FoodWidget;
-    
-    /* date_default_timezone_set('America/Merida');
-    echo date('Y-m-d h:i:s'); */
 
 ?>
 
 
-<h1>Agregar comida del día</h1>
 
-<div class="row gy-3">
+<div class="container-fluid">
+    <div class="page-header">
+        <h1 class="text-titles">Menú</h1>
+    </div>
+</div>
+
+<div class="full-box custom-full-box text-center" style="padding: 30px 10px;">
     <?php
         foreach($menu as $key => $food) {
             $food['btn_text'] = 'Agregar';
-            ?> <div class="col-3"> <?php
-                FoodWidget::begin(['data' => $food]);
-            ?> </div> <?php
+            FoodWidget::begin(['data' => $food]);
         }
     ?>
 </div>
 
+<div class="container-fluid">
+    <div class="page-header">
+        <h1 class="text-titles">Agrega un extra</h1>
+    </div>
+</div>
 
-<h1>Extras</h1>
-
-<table class="table table-dark table-striped">
-  <thead>
-    <tr>
-        <th>Extra</th>
-        <th>Precio</th>
-        <th>Opciones</th>
-    </tr>
-  </thead>
-  <tbody>
-
-    <?php if(!empty($extras)): ?>
-        <?php foreach($extras as $key => $extra): ?>
-            <tr>
-                <td><?= $extra['extra'] ?></td>
-                <td><?= $extra['price'] ?></td>
-                <td>
-                    <div class="row">
-                        <div class="col-2">
-                            <form method="POST">
-                                <input type="hidden" name="extra" value="<?= $extra['extra'] ?>">
-                                <button name="add_extra" class="btn btn-primary">Agregar</button>
-                            </form>
+<div class="full-box" style="padding: 30px 10px;">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12">
+                <ul class="nav nav-tabs" style="margin-bottom: 15px;">
+                    <li><a href="#listYear" data-toggle="tab"><i class="zmdi zmdi-calendar-note"></i> Extras</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active in fade" id="listYear">
+                        <div class="table-responsive">
+                            <table class="table table-hover text-center">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">#</th>
+                                        <th class="text-center">Extra</th>
+                                        <th class="text-center">Precio</th>
+                                        <th class="text-center">Agregar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php if(!empty($extras)): ?>
+                                        <?php foreach($extras as $key => $extra): ?>
+                                            <tr>
+                                                <td><?= $key + 1 ?></td>
+                                                <td><?= $extra['extra'] ?></td>
+                                                <td><?= $extra['price'] ?></td>
+                                                <td>
+                                                    <form method="POST">
+                                                        <input type="hidden" name="extra" value="<?= $extra['extra'] ?>">
+                                                        <button name="add_extra" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                </td>
-            </tr>
-        <?php endforeach; ?>
-    <?php endif; ?>
-
-  </tbody>
-</table>
-
-
-<?php if(!empty($orders)): ?>
-
-    <h1>Mis órdenes</h1>
-
-    <table class="table table-dark table-striped">
-        <thead>
-            <tr>
-                <th>Orden</th>
-                <th>Cantidad</th>
-                <th>Precio total</th>
-                <th>Borrar Orden</th>
-            </tr>
-        </thead>
-        <tbody>
-
-            <?php foreach($orders as $key => $order): ?>
-                <tr>
-                    <td><?= $order['order_'] ?></td>
-                    <td><?= $order['quantity'] ?></td>
-                    <td><?= $order['price'] ?></td>
-                    <td>
-                        <div class="row">
-                            <div class="col-2">
-                                <form method="POST">
-                                    <input type="hidden" name="order_id" value="<?= $order['order_id'] ?>">
-                                    <button name="delete_order" class="btn btn-danger">X</button>
-                                </form>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-
-        </tbody>
-    </table>
-
-<?php endif; ?>
-
-
-
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

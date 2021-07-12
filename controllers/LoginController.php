@@ -16,7 +16,7 @@ class LoginController extends Controller {
     public function actionLogin() {
 
         if( !isset($_REQUEST['username']) || !isset($_REQUEST['password']) ) {
-            //$_SESSION['text'] = "Ocurrió un error";
+            $_SESSION['text'] = "Ocurrió un error";
             header('Location: /login');
         }
 
