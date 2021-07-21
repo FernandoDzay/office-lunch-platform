@@ -16,7 +16,6 @@ $config = [
             'rules' => [
 
 
-
                 //  SITE
                 [ 'pattern' => '/', 'route' => 'site/home'],
                 [ 'pattern' => '/login', 'route' => 'site/login'], 
@@ -37,12 +36,17 @@ $config = [
                 [ 'pattern' => '/groups', 'route' => 'admin/groups'],
                 [ 'pattern' => '/payments', 'route' => 'admin/payments'],
                 
+
+                // AJAX
+                [ 'pattern' => '/make-order', 'route' => 'ajax/makeorder'],
+                
                 
 
 
                 // LOGIN
                 [ 'pattern' => '/login-user', 'route' => 'login/login'],
                 [ 'pattern' => '/register-user', 'route' => 'login/register'],
+                [ 'pattern' => '/logout', 'route' => 'login/logout'], 
             ],
         ]
     ]

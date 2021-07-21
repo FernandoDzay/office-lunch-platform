@@ -231,6 +231,7 @@
         public function actionPayments() {
             $orders = Application::$app->GlobalFunctions->getWeekOrders();
             $users_array = Application::$app->GlobalFunctions->getUsers();
+            $orders_data = Application::$app->GlobalFunctions->getOrdersData();
 
             $users = [];
             foreach($users_array as $key => $user) {
@@ -239,35 +240,62 @@
                 }
             }
 
-            $prices_by_user = [
-                'lunes' => [],
-                'martes' => [],
-                'miercoles' => [],
-                'jueves' => [],
-                'viernes' => [],
+            $days_of_week = [
+                'lunes' => 0,
+                'martes' => 0,
+                'miercoles' => 0,
+                'jueves' => 0,
+                'viernes' => 0,
             ];
 
-            foreach($prices_by_user as $day => $value) {
-                $prices_by_user[$day] = $users;
+            // Asignando al arreglo prices_by_user, todos los usuarios, y que cada usuario contenga los días de la semana de lunes a viernes
+            foreach($users as $user => $value) {
+                $prices_by_user[$user] = $days_of_week;
             }
 
-            foreach($prices_by_user as $day => $values) {
-                foreach($users as $user => $user_total) {
+            /* echo "<pre>";
+            print_r($orders_data);
+            die(); */
+
+            // 
+            foreach($prices_by_user as $user => $days) {
+                foreach($days as $day => $user_total) {
                     if( isset($orders[$day][$user]) ) {
 
-                        foreach($orders[$day][$user] as $key => $tmp ) {
-                            $prices_by_user[$day][$user] += $tmp['price'];
+                        foreach( $orders[$day][$user] as $key => $tmp ) {
+                            $prices_by_user[$user][$day] += $tmp['price'];
                         }
                         
                     }
                 }
             }
 
+
+            $users = $prices_by_user;
+
+            
+            $total_by_user = [];
+            foreach($users as $user => $days) {
+                $total_by_user[$user] = 0;
+                foreach($days as $day => $price) {
+                    $total_by_user[$user] += $price;
+                }
+            }
+
+            $users_total_price = 0;
+            foreach($total_by_user as $user => $total) {
+                $users_total_price += $total;
+            }
+
+            
             /* echo "<pre>";
-            print_r($prices_by_user);
+            print_r($total_by_user);
             die(); */
-         
-            return $this->render('payments', ['prices_by_user' => $prices_by_user]);
+            return $this->render('payments', [
+                'users' => $users, 
+                'total_by_user' => $total_by_user, 
+                'orders_data' => $orders_data,
+            ]);
         }
 
 

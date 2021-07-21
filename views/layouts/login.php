@@ -15,7 +15,16 @@
 	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 	<link rel="icon" href="/favicon.ico" type="image/x-icon">
 	<link rel="stylesheet" href="/css/main.css">
-	<link rel="stylesheet" href="/css/custom.css">
+	<link rel="stylesheet" href="/css/login_custom.css">
+
+
+	<script src="./js/jquery-3.1.1.min.js"></script>
+	<script src="./js/bootstrap.min.js"></script>
+	<script src="./js/material.min.js"></script>
+	<script src="./js/ripples.min.js"></script>
+	<script src="./js/sweetalert2.min.js"></script>
+	<script src="./js/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script src="./js/main.js"></script>
 
 </head>
 <body class="cover" style="background-image: url(./assets/img/loginFont.jpg);">
@@ -32,13 +41,10 @@
 
 	
 	<!--====== Scripts -->
-	<script src="./js/jquery-3.1.1.min.js"></script>
-	<script src="./js/bootstrap.min.js"></script>
-	<script src="./js/material.min.js"></script>
-	<script src="./js/ripples.min.js"></script>
-	<script src="./js/sweetalert2.min.js"></script>
-	<script src="./js/jquery.mCustomScrollbar.concat.min.js"></script>
-	<script src="./js/main.js"></script>
+
+	<script src="./js/jquery.validate.min.js"></script>
+	<script src="./js/messages_es.js"></script>
+	<script src="./js/login_custom.js"></script>
 	<script>
 		$.material.init();
 	</script>

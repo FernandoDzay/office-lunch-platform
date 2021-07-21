@@ -75,15 +75,6 @@
                         <li>
                             <a href="admin.html"><i class="zmdi zmdi-account zmdi-hc-fw"></i> Admin</a>
                         </li>
-                        <li>
-                            <a href="teacher.html"><i class="zmdi zmdi-male-alt zmdi-hc-fw"></i> Teacher</a>
-                        </li>
-                        <li>
-                            <a href="student.html"><i class="zmdi zmdi-face zmdi-hc-fw"></i> Student</a>
-                        </li>
-                        <li>
-                            <a href="representative.html"><i class="zmdi zmdi-male-female zmdi-hc-fw"></i> Representative</a>
-                        </li>
                     </ul>
                 </li>
                 <li>
@@ -99,16 +90,6 @@
                         </li>
                         <li>
                             <a href="/week-orders"><i class="zmdi zmdi-money zmdi-hc-fw"></i> Pedidos de la semana de todos</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#!" class="btn-sideBar-SubMenu">
-                        <i class="zmdi zmdi-shield-security zmdi-hc-fw"></i> Settings School 
-                    </a>
-                    <ul class="list-unstyled full-box">
-                        <li>
-                            <a href="school.html"><i class="zmdi zmdi-balance zmdi-hc-fw"></i> School Data</a>
                         </li>
                     </ul>
                 </li>
@@ -211,6 +192,11 @@
         <ul class="full-box list-unstyled text-right">
             <li class="pull-left">
                 <a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
+            </li>
+            <li>
+                <a href="#!" class="make-order">
+                    <i class="zmdi zmdi-cutlery"></i>
+                </a>
             </li>
             <li>
                 <a href="#!" class="btn-Notifications-area">

@@ -1,0 +1,9 @@
+.btn, .input-group-btn .btn  {
+    will-change: initial;
+}
+.logInForm .form-group .form-control {
+    color: #eeeeee;
+}
+.form-control option {
+    color: black;
+}

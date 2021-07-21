@@ -4,6 +4,7 @@ namespace App\controllers;
 
 use App\core\base\Controller;
 use App\core\http\REST;
+use App\core\Application;
 
 
 class LoginController extends Controller {
@@ -16,16 +17,17 @@ class LoginController extends Controller {
     public function actionLogin() {
 
         if( !isset($_REQUEST['username']) || !isset($_REQUEST['password']) ) {
-            $_SESSION['text'] = "Ocurrió un error";
             header('Location: /login');
         }
 
-
         $url = "http://local.api-office-lunch/login";
+
+        $token = Application::$app->GlobalFunctions->generateToken();
 
         $user = [
             'username' => $_REQUEST['username'],
             'password' => $_REQUEST['password'],
+            'token' => $token,
         ];
 
         $rest = new REST();
@@ -36,24 +38,23 @@ class LoginController extends Controller {
 
 
         if( $response['response'] === "true") {
-            $_SESSION['logged_in'] = true;
-            $_SESSION['text'] = "";
             $_SESSION['user_id'] = $response['user_id'];
+
+            //set cookie
+            setcookie('office_lunch_user_id', $response['user_id'], time() + 2678400);
+            setcookie('office_lunch_token', $token, time() + 2678400);
             header('Location: /');
         }
         else {
-            $_SESSION['text'] = "Usuario o contraseña incorrecta";
+            $_SESSION['login_error'] = true;
             header('Location: /login');
         }
 
     }
 
-
-
     public function actionRegister() {
 
-        if( !isset($_REQUEST['username']) || !isset($_REQUEST['password']) ) {
-            //$_SESSION['text'] = "Ocurrió un error";
+        if( !isset($_REQUEST['username']) || !isset($_REQUEST['password']) || !isset($_REQUEST['birth_day']) || !isset($_REQUEST['birth_month']) ) {
             header('Location: /register');
         }
 
@@ -63,6 +64,8 @@ class LoginController extends Controller {
         $user = [
             'username' => $_REQUEST['username'],
             'password' => $_REQUEST['password'],
+            'birth_month' => $_REQUEST['birth_month'],
+            'birth_day' => $_REQUEST['birth_day']
         ];
 
 
@@ -72,17 +75,30 @@ class LoginController extends Controller {
         $response = json_decode($response, true);
 
         
-
-        
-        if( $response['response'] === "true") {
-            $_SESSION['text'] = "";
-            header('Location: /login');
+        if(isset($response['response'])) {
+            if( $response['response'] === "true") {
+                $_SESSION['register_success'] = true;
+                header('Location: /login');
+            }
+            else {
+                $_SESSION['register_error'] = true;
+                header('Location: /register');
+            }
         }
         else {
-            $_SESSION['text'] = "Ese usuario ya existe";
             header('Location: /register');
         }
+        
 
+    }
+
+    public function actionLogout() {
+
+        setcookie('office_lunch_user_id', $response['user_id'], time() - 3600);
+        setcookie('office_lunch_token', $token, time() - 3600);
+        $_SESSION['user_id'] = "";
+
+        header('Location: /login');
     }
 
 }

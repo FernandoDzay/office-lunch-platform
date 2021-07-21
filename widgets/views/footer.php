@@ -12,6 +12,8 @@
 <script>
     $.material.init();
 </script>
+<script src="./js/clipboard.min.js"></script>
+<script src="./js/custom.js"></script>
 
 <footer>
 </footer>

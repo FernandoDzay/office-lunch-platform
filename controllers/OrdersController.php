@@ -19,18 +19,10 @@ class OrdersController extends Controller {
     public function actionWeekorders() {
 
         $orders = Application::$app->GlobalFunctions->getWeekOrders();
+        $orders_data = Application::$app->GlobalFunctions->getOrdersData();
 
-        $users = [];
 
-        foreach($orders as $key => $days) {
-            foreach($days as $name => $values) {
-                if( !in_array($name, $users) ) {
-                    array_push($users, $name);
-                }
-            }
-        }
-
-        return $this->render('week-orders', ['orders' => $orders]);
+        return $this->render('week-orders', ['orders' => $orders, 'orders_data' => $orders_data]);
     }
 
 

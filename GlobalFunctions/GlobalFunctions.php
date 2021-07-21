@@ -12,6 +12,11 @@
             
         }
 
+        public function generateToken() {
+            $random_bytes = random_bytes(16);
+            $token = bin2hex($random_bytes);
+            return $token;
+        }
 
         public function getMenu() {
 
@@ -126,6 +131,41 @@
             $data = $rest->get($url);
 
             return json_decode($data, true);
+        }
+
+        public function getOrdersData() {
+            $rest = new REST();
+            $url = "http://local.api-office-lunch/get-orders-data";
+
+            $data = $rest->get($url);
+
+            return json_decode($data, true);
+        }
+
+        public function makeOrder() {
+            $rest = new REST();
+            $url = "http://local.api-office-lunch/make-order";
+
+            $data = $rest->get($url);
+
+            return json_decode($data, true);
+        }
+
+        public function transformDateToDay($date) {
+
+            $week = [
+                1 => 'lunes',
+                2 => 'martes',
+                3 => 'miercoles',
+                4 => 'jueves',
+                5 => 'viernes',
+            ];
+
+            $day_number_of_week = date("N", strtotime($date));
+            
+            $day = $week[$day_number_of_week];
+
+            return $day;
         }
 
 

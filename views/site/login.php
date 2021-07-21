@@ -1,3 +1,5 @@
+
+
 <form action="/login-user" method="post" autocomplete="off" class="full-box logInForm">
     <p class="text-center text-muted"><i class="zmdi zmdi-account-circle zmdi-hc-5x"></i></p>
     <p class="text-center text-muted text-uppercase">Inicia sesión con tu cuenta</p>
@@ -16,8 +18,22 @@
     </div>
 </form>
 
-<?php if( isset($text) ): ?>
-    <p class="text-danger bg-white"><?= $text ?></p>
+
+
+<?php if( isset($register_success) ): ?>
+    <script>
+        swal(
+            'Tu Cuenta ha sido creada!',
+            'Ya puedes loguear',
+            'success'
+        );
+    </script>
+<?php elseif( isset($login_error) ): ?>
+    <script>
+        swal(
+            'Username o Contraseña incorrecta!',
+            'Intenta de nuevo',
+            'error'
+        );
+    </script>
 <?php endif; ?>
-
-

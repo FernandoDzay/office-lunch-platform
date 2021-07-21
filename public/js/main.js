@@ -21,7 +21,7 @@ $(document).ready(function(){
 		  	confirmButtonText: '<i class="zmdi zmdi-run"></i> Yes, Exit!',
 		  	cancelButtonText: '<i class="zmdi zmdi-close-circle"></i> No, Cancel!'
 		}).then(function () {
-			window.location.href="/login";
+			window.location.href="/logout";
 		});
 	});
 	$('.btn-menu-dashboard').on('click', function(){
@@ -79,6 +79,8 @@ $(document).ready(function(){
         	theme:"dark-thin",
         	scrollbarPosition: "inside",
         	autoHideScrollbar: true,
+			scrollInertia: 0,
+			mouseWheelPixels: 100,
         	scrollButtons: {enable: true}
         });
     });

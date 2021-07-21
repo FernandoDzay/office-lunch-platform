@@ -41,37 +41,54 @@ class SiteController extends Controller {
 
     public function actionLogin() {
 
+        if( isset($_COOKIE['office_lunch_user_id']) && isset($_COOKIE['office_lunch_token']) ) {
+            $url = "http://local.api-office-lunch/token-login";
+
+            $user = [
+                'id' => $_COOKIE['office_lunch_user_id'],
+                'token' => $_COOKIE['office_lunch_token']
+            ];
+            $rest = new REST();
+
+            $response = $rest->post($url, $user);
+            $response = json_decode($response, true);
+
+            if( $response['response'] === "true") {
+                $_SESSION['user_id'] = $response['user_id'];
+                header('Location: /');
+            }
+
+        }
+
+
         $this->setLayout('login');
 
-        if(isset($_SESSION['text'])) {
-            if( !($_SESSION['text'] === "") ) {
-                $text = $_SESSION['text'];
-                $_SESSION['text'] = "";
-                return $this->render( 'login', ['text' => $text] );
-            }
-            else {
-                return $this->render('login');
+        if(isset($_SESSION['register_success'])) {
+            if($_SESSION['register_success'] === true) {
+                $_SESSION['register_success'] = false;
+                return $this->render( 'login', ['register_success' => true] );
             }
         }
-        else {
-            return $this->render('login');
+        if(isset($_SESSION['login_error'])) {
+            if($_SESSION['login_error'] === true) {
+                $_SESSION['login_error'] = false;
+                return $this->render( 'login', ['login_error' => true] );
+            }
         }
 
+        return $this->render('login');
     }
 
     public function actionRegister() {
 
         $this->setLayout('login');
 
-        if(isset($_SESSION['text'])) {
-            if( !($_SESSION['text'] === "") ) {
-                $text = $_SESSION['text'];
-                $_SESSION['text'] = "";
-                return $this->render( 'register', ['text' => $text] );
+        if(isset($_SESSION['register_error'])) {
+            if($_SESSION['register_error'] === true) {
+                $_SESSION['register_error'] = false;
+                return $this->render( 'register', ['register_error' => true] );
             }
-            else {
-                return $this->render('register');
-            }
+            return $this->render('register');
         }
         else {
             return $this->render('register');

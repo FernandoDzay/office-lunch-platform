@@ -37,15 +37,49 @@
                                     <?php foreach($users as $user => $user_orders): ?>
                                         <?php foreach($user_orders as $i => $order): ?>
                                             <tr>
-                                                <td><?= $user ?></td>
-                                                <td><?= $order['order'] ?></td>
-                                                <td><?= $order['quantity'] ?></td>
+                                                <?php if( $i > 0 ): ?>
+                                                    <td style="border-top:none;"></td>
+                                                    <td style="border-top:none;"><?= $order['order'] ?></td>
+                                                    <td style="border-top:none;"><?= $order['quantity'] ?></td>
+                                                <?php else: ?>
+                                                    <td><?= $user ?></td>
+                                                    <td><?= $order['order'] ?></td>
+                                                    <td><?= $order['quantity'] ?></td>
+                                                <?php endif; ?>
                                             </tr>
                                         <?php endforeach; ?>
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
+
+                        <div class="row" style="margin-top: 30px;">
+                            <div class="col-xs-12 col-sm-4">
+                                <ul class="nav nav-tabs">
+                                    <li class="active"><a href="#week" data-toggle="tab">Cantidad de comidas del <?= ucwords($day) ?></a></li>
+                                </ul>
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Comida</th>
+                                                <th>Cantidad</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach($orders_data['days'][$day]['quantity_data'] as $key => $order): ?>
+                                                <tr>
+                                                    <td><?= $order['order'] ?></td>
+                                                    <td><?= $order['quantity'] ?></td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+
                     </div>
                 <?php endforeach; ?>
 
