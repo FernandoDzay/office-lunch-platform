@@ -106,6 +106,15 @@
             }
         }
 
+        public function removeUserGroup($user_id) {
+
+            $rest = new REST();
+
+            $url = "http://local.api-office-lunch/remove-user-group";
+
+            $rest->delete($url, ['user_id' => $user_id]);
+        }
+
         public function getGroupsTablesData() {
             $rest = new REST();
             $url = "http://local.api-office-lunch/groups-data";

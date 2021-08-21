@@ -25,7 +25,8 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-xs-12 col-md-10 col-md-offset-1">
-                                <form action="/insert-food-of-the-day" method="POST">
+                                <!-- <form action="/insert-food-of-the-day" method="POST"> -->
+                                <form enctype="multipart/form-data" action="/test" method="POST">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Comida</label>
                                         <input class="form-control" name="food" type="text">
@@ -36,7 +37,7 @@
                                     </div>
                                     <div class="form-group label-floating">
                                         <label class="control-label checkbox" name="save">Deseas guardar la comida creada?</label>
-                                        <input class="form-control" type="checkbox">
+                                        <input class="form-control" name="save" type="checkbox">
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label">Ingresa una imagen (opcional)</label>

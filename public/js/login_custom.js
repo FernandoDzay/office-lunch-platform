@@ -13,7 +13,3 @@ $("#register_form").validate({
         }
     }
 });
-
-/* $("#register_form").click(function(e) {
-    e.preventDefault();
-}); */

@@ -1,7 +1,6 @@
 <?php
 
 	use App\widgets\HeaderWidget;
-	use App\widgets\NewHeaderWidget;
 	use App\widgets\FooterWidget;
 
 ?>
@@ -16,13 +15,17 @@
 	<link rel="stylesheet" href="./css/main.css">
 	<link rel="stylesheet" href="./css/custom.css">
 
+	<script>
+		user_id = <?= $_SESSION['user_id'] ?>
+	</script>
+
 </head>
 
 
 <body>
 
 	<?php
-		NewHeaderWidget::begin(['data' => []]);
+		HeaderWidget::begin(['data' => []]);
 	?>
 
 		<?= $content ?>

@@ -191,3 +191,9 @@ label.checkbox {
     width: 100%;
     max-width: 200px;
 }
+.list-group .list-group-item .row-action-primary i.red, .list-group .list-group-item .row-picture i.red {
+    background: #f44336;
+}
+.dashboard-Navbar > ul > li > a > span.badge {
+    transition: initial;
+}

@@ -78,13 +78,159 @@ $(".make-order").click(function() {
     });
 });
 
-//console.log(orders_data);
+function print_notifications(notifications) {
+    notifications_html = '<div class="list-group-separator"></div>';
+    notifications.forEach(notification => {
 
-/* var clipboard = new ClipboardJS('.make-order');
+        notifications_html += getNotificationHTML(notification);
+        notifications_html += '<div class="list-group-separator"></div>';
+        
+    });
 
-clipboard.on('success', function(e) {
-    console.log("succes");
+    $(".Notifications-area .list-group").html(notifications_html);
+    $(".Notifications-area .list-group").fadeIn(500);
+    $("#notifications_title").html("Notificationes");
+}
 
-    e.clearSelection();
-}); */
+function getNotificationHTML(notification) {
 
+    icon_class = "zmdi-alert-octagon";
+    color_class = "red";
+
+    switch(notification.type) {
+        case 'normal':
+            icon_class = "zmdi-alert-octagon";
+            color_class = "red";
+            break;
+    }
+
+    notification_html = '<div class="list-group-item" data-id="' + notification.id + '" data-has-been-read="' + notification.has_been_read + '">';
+        notification_html += '<div class="row-action-primary">';
+            notification_html += '<i class="zmdi ' + icon_class + ' ' + color_class + '"></i>';
+        notification_html += '</div>';
+        notification_html += '<div class="row-content">';
+            notification_html += '<div class="least-content">15m</div>';
+            notification_html += '<h4 class="list-group-item-heading">' + notification.title + '</h4>';
+            notification_html += '<p class="list-group-item-text">' + notification.description + '</p>';
+        notification_html += '</div>';
+    notification_html += '</div>';
+
+    return notification_html;
+}
+
+function getNewNotificationsNumber(notifications) {
+    number_of_new_notifications = 0;
+
+    notifications.forEach(notification => {
+
+        if(notification.has_been_read == 0) {
+            number_of_new_notifications++;
+        }
+
+    });
+
+    return number_of_new_notifications;
+}
+
+function countCurrentNotifications() {
+    currentNotifications = $(".Notifications-area .list-group .list-group-item");
+    return currentNotifications.length;
+}
+
+function getNewNotificationsIds() {
+    currentNotifications = $(".Notifications-area .list-group .list-group-item");
+    new_notifications_ids = [];
+
+
+    if(currentNotifications.length > 0) {
+
+        $.each(currentNotifications, function(i, notification) {
+            if(notification.getAttribute('data-has-been-read') == 0) {
+                new_notifications_ids.push(notification.getAttribute('data-id'));
+            }
+        })
+
+    }
+
+    return new_notifications_ids;
+}
+
+function setHasBeenRead() {
+    currentNotifications = $(".Notifications-area .list-group .list-group-item");
+
+    if(currentNotifications.length > 0) {
+
+        $.each(currentNotifications, function(i, notification) {
+            if(notification.getAttribute('data-has-been-read') == 0) {
+                notification.setAttribute('data-has-been-read', '1');
+            }
+        })
+
+    }
+}
+
+
+
+
+
+cronNotifications();
+
+window.setInterval(cronNotifications, 60000);
+
+
+
+
+//-------------------------------------------------
+
+function cronNotifications() {
+    
+    $.ajax({
+        url: "/get-notifications",
+        type: "get",
+        data: {
+            user_id: user_id
+        }
+    }).done( function( data ) {
+
+        notifications = JSON.parse(data);
+        if(notifications.length > 0) {
+
+            number_of_new_notifications = getNewNotificationsNumber(notifications);
+            current_notifications = countCurrentNotifications();
+
+            if(number_of_new_notifications > 0 && number_of_new_notifications != $("#notifications_number").html()) {
+                $("#notifications_number").html(number_of_new_notifications);
+                $("#notifications_number").fadeIn(500);
+            }
+            if(current_notifications < notifications.length) {
+                print_notifications(notifications);
+            }
+
+        }
+
+    });
+}
+
+
+$("#notifications_btn").click(function() {
+    new_notifications_ids = getNewNotificationsIds();
+
+    if(new_notifications_ids.length > 0) {
+
+        new_notifications_ids = JSON.stringify(new_notifications_ids);
+
+        $.ajax({
+            url: "/update-notifications",
+            type: "post",
+            data: {
+                ids: new_notifications_ids
+            }
+        }).done( function( data ) {
+    
+            $("#notifications_number").fadeOut(500);
+            setHasBeenRead();
+    
+        });
+
+    }
+});

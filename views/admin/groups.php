@@ -53,6 +53,7 @@
                                 <thead>
                                     <tr>
                                         <th>Grupo <?= $group['group_id'] ?></th>
+                                        <th>Remover del grupo</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -60,6 +61,13 @@
                                         <?php if($users_groups_table['group_id'] == $group['group_id']): ?>
                                             <tr>
                                                 <td><?= $users_groups_table['username'] ?></td>
+                                                <td>
+                                                    <form method="POST">
+                                                        <input type="hidden" name="tab" value="<?= $group['group_id'] ?>">
+                                                        <input type="hidden" name="user_id" value="<?= $users_groups_table['user_id'] ?>">
+                                                        <button name="remove_user_from_group" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></button>
+                                                    </form>
+                                                </td>
                                             </tr>
                                         <?php endif; ?>
                                     <?php endforeach; ?>

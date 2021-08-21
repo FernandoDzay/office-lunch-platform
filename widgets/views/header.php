@@ -27,6 +27,9 @@
                 <figure class="full-box">
                     <img src="./assets/img/avatar.jpg" alt="UserIcon">
                     <figcaption class="text-center text-titles"><?= $data['username'] ?></figcaption>
+                    <?php if($data['lunch_hour'] != false): ?>
+                        <p style="margin-top: 10px;margin-bottom:-10px;">Horario: <?= substr($data['lunch_hour']['start_time'], 0, -3) ?> - <?= substr($data['lunch_hour']['end_time'], 0, -3) ?></p>
+                    <?php endif; ?>
                 </figure>
                 <ul class="full-box list-unstyled text-center">
                     <li>
@@ -132,52 +135,18 @@
         <div class="full-box Notifications-bg btn-Notifications-area"></div>
         <div class="full-box Notifications-body">
             <div class="Notifications-body-title text-titles text-center">
-                Notifications <i class="zmdi zmdi-close btn-Notifications-area"></i>
+                <span id="notifications_title">Sin Notificaciones</span> <i class="zmdi zmdi-close btn-Notifications-area"></i>
             </div>
-            <div class="list-group">
-                <div class="list-group-item">
-                    <div class="row-action-primary">
-                        <i class="zmdi zmdi-alert-triangle"></i>
-                    </div>
-                    <div class="row-content">
-                        <div class="least-content">17m</div>
-                        <h4 class="list-group-item-heading">Tile with a label</h4>
-                        <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus.</p>
-                    </div>
-                </div>
-                <div class="list-group-separator"></div>
-                <div class="list-group-item">
-                    <div class="row-action-primary">
-                        <i class="zmdi zmdi-alert-octagon"></i>
-                    </div>
-                    <div class="row-content">
-                        <div class="least-content">15m</div>
-                        <h4 class="list-group-item-heading">Tile with a label</h4>
-                        <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus.</p>
-                    </div>
-                </div>
-                <div class="list-group-separator"></div>
-                <div class="list-group-item">
-                    <div class="row-action-primary">
-                        <i class="zmdi zmdi-help"></i>
-                    </div>
-                    <div class="row-content">
-                        <div class="least-content">10m</div>
-                        <h4 class="list-group-item-heading">Tile with a label</h4>
-                        <p class="list-group-item-text">Maecenas sed diam eget risus varius blandit.</p>
-                    </div>
-                </div>
-                <div class="list-group-separator"></div>
-                <div class="list-group-item">
-                    <div class="row-action-primary">
-                        <i class="zmdi zmdi-info"></i>
-                    </div>
-                    <div class="row-content">
-                        <div class="least-content">8m</div>
-                        <h4 class="list-group-item-heading">Tile with a label</h4>
-                        <p class="list-group-item-text">Maecenas sed diam eget risus varius blandit.</p>
-                    </div>
-                </div>
+            <div class="list-group" style="display:none;">
+                           
+
+
+            
+
+
+
+
+
             </div>
 
         </div>
@@ -199,9 +168,9 @@
                 </a>
             </li>
             <li>
-                <a href="#!" class="btn-Notifications-area">
+                <a href="#!" class="btn-Notifications-area" id="notifications_btn">
                     <i class="zmdi zmdi-notifications-none"></i>
-                    <span class="badge">7</span>
+                    <span id="notifications_number" class="badge" style="display:none;">0</span>
                 </a>
             </li>
             <li>

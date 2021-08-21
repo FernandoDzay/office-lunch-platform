@@ -37,6 +37,38 @@ class AjaxController extends Controller {
         echo json_encode($orders_data);
     }
 
+    public function actionGetnotifications() {
+
+        header('Content-type: application/json');
+
+        if(!isset($_REQUEST['user_id'])) die();
+
+        $user_id = $_REQUEST['user_id'];
+
+        $rest = new REST();
+        $url = "http://local.api-office-lunch/get-notifications";
+
+        $notifications = $rest->get($url, ['user_id' => $user_id]);
+
+
+
+        echo json_encode($notifications);
+    }
+
+    public function actionUpdatenotifications() {
+
+        if( !isset($_POST['ids']) ) die();
+
+        $ids = $_POST['ids'];
+
+
+        $rest = new REST();
+        $url = "http://local.api-office-lunch/update-notifications";
+        $rest->put($url, ['ids' => $ids]);
+
+
+    }
+
 
 
 

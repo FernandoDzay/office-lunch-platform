@@ -18,6 +18,7 @@ $config = [
 
                 //  SITE
                 [ 'pattern' => '/', 'route' => 'site/home'],
+                [ 'pattern' => '/test', 'route' => 'site/test'],
                 [ 'pattern' => '/login', 'route' => 'site/login'], 
                 [ 'pattern' => '/register', 'route' => 'site/register'],
                 [ 'pattern' => '/todays-order', 'route' => 'site/todaysorder'],
@@ -39,6 +40,8 @@ $config = [
 
                 // AJAX
                 [ 'pattern' => '/make-order', 'route' => 'ajax/makeorder'],
+                [ 'pattern' => '/get-notifications', 'route' => 'ajax/getnotifications'],
+                [ 'pattern' => '/update-notifications', 'route' => 'ajax/updatenotifications'],
                 
                 
 

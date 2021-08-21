@@ -107,6 +107,26 @@ class SiteController extends Controller {
         return $this->render('todays-order', ['orders' => $orders]);
     }
 
+    public function actionTest() {
+
+        echo "<pre>";
+        print_r($_FILES);
+        die();
+
+        $type = $_FILES['image']['tmp_name'];
+
+        echo exif_imagetype($type);
+
+
+
+
+        die();
+        
+
+
+        return;
+    }
+
 }
 
 

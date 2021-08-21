@@ -212,11 +212,13 @@
             if(isset($_REQUEST['add_user_group'])) {
                 Application::$app->GlobalFunctions->addUserGroup($_REQUEST['user_id'], $_REQUEST['group_id']);
             }
+            else if(isset($_REQUEST['remove_user_from_group'])) {
+                Application::$app->GlobalFunctions->removeUserGroup($_REQUEST['user_id']);
+            }
 
             $users = Application::$app->GlobalFunctions->getUsers();
             $groups = Application::$app->GlobalFunctions->getGroups();
             $groups_tables_data = Application::$app->GlobalFunctions->getGroupsTablesData();
-
 
             $data = [
                 'users' => $users,
@@ -225,6 +227,11 @@
             ];
 
 
+            /* if(isset($_REQUEST['remove_user_from_group'])) {
+                return $this->render("groups", $data);
+            }
+            else {
+            } */
             return $this->render("groups", $data);
         }
 
