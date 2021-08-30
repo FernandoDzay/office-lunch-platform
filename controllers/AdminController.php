@@ -54,7 +54,9 @@
             }
             elseif(isset($_REQUEST['food'])) {
 
-                $food = $_REQUEST['food'];
+                $food_name = $_REQUEST['food'];
+
+                $food = [];
 
                 if(isset($_REQUEST['short_name'])) {
                     $short_name = $_REQUEST['short_name'];
@@ -63,11 +65,14 @@
                     $short_name = null;
                 }
     
-                if(isset($_REQUEST['food_image'])) {
-                    $food_image = $_REQUEST['food_image'];
-                }
-                else {
-                    $food_image = "DEFAULT";
+                if( isset($_FILES['image']) ) {
+
+                    $mime_type = $_FILES['image']['type'];
+
+                    if( Application::$app->GlobalFunctions->isImage($mime_type) ) {
+                        $image = Application::$app->GlobalFunctions->generateImage();
+                        $food['image'] = $image;
+                    }
                 }
     
                 if(isset($_REQUEST['save'])) {
@@ -78,13 +83,10 @@
                 }
                 
                 $url = "http://local.api-office-lunch/insert-food";
-                
-                $food = [
-                    'food' => $food,
-                    'short_name' => $short_name,
-                    'food_image' => $food_image,
-                    'is_temporal' => $is_temporal,
-                ];
+
+                $food['food'] = $food_name;
+                $food['short_name'] = $short_name;
+                $food['is_temporal'] = $is_temporal;
 
                 $rest = new REST();
 

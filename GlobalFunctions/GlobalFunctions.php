@@ -177,6 +177,61 @@
             return $day;
         }
 
+        public function sendImage() {
+
+            /* echo "<pre>";
+            print_r($_FILES);
+            die(); */
+
+            if( empty($_FILES) ) return false;
+            if( !isset($_FILES['image']) ) return false;
+
+            $uploaded_file = $_FILES['image']['tmp_name'];
+            $image_name = $_FILES['image']['name'];
+            $url = "http://local.api-office-lunch/upload-image";
+            $cf = new \CURLFile($uploaded_file, mime_content_type($uploaded_file), $image_name);
+
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, [ "image" => $cf ]);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+            $result = curl_exec($ch);
+            
+            if (curl_errno($ch)) {
+                $error = "CURL ERROR - " . curl_error($ch);
+                curl_close($ch);
+                return $error;
+            }
+            else {
+                curl_close($ch);
+                return $result;
+            }
+
+        }
+
+        public function generateImage() {
+            if( empty($_FILES) ) return false;
+            if( !isset($_FILES['image']) ) return false;
+
+            $uploaded_file = $_FILES['image']['tmp_name'];
+            $image_name = $_FILES['image']['name'];
+            $cf = new \CURLFile($uploaded_file, mime_content_type($uploaded_file), $image_name);
+
+            return $cf;
+        }
+
+        public function isImage($mime_type) {
+
+            $array = ['image/png', 'image/jpeg', 'image/webp'];
+
+            if( in_array($mime_type, $array) ) return true;
+            else return false;
+        }
+
+        
+
 
 
         //---------------

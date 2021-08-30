@@ -109,20 +109,23 @@ class SiteController extends Controller {
 
     public function actionTest() {
 
-        echo "<pre>";
-        print_r($_FILES);
-        die();
-
-        $type = $_FILES['image']['tmp_name'];
-
-        echo exif_imagetype($type);
-
-
-
+        if( Application::$app->GlobalFunctions->isImage($_FILES['image']['type']) ) echo "es imagen";
+        else echo "no es imagen";
 
         die();
+
+        $result = Application::$app->GlobalFunctions->sendImage();
+
+        if($result) {
+            echo $result;
+        }
+        else {
+            echo "no se pudo subir la imagen";
+        }
+
+        die();
+
         
-
 
         return;
     }

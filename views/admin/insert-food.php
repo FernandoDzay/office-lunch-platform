@@ -25,8 +25,8 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-xs-12 col-md-10 col-md-offset-1">
-                                <!-- <form action="/insert-food-of-the-day" method="POST"> -->
-                                <form enctype="multipart/form-data" action="/test" method="POST">
+                                <form enctype="multipart/form-data" action="/insert-food-of-the-day" method="POST">
+                                <!-- <form enctype="multipart/form-data" action="/test" method="POST"> -->
                                     <div class="form-group label-floating">
                                         <label class="control-label">Comida</label>
                                         <input class="form-control" name="food" type="text">
