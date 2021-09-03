@@ -109,22 +109,9 @@ class SiteController extends Controller {
 
     public function actionTest() {
 
-        if( Application::$app->GlobalFunctions->isImage($_FILES['image']['type']) ) echo "es imagen";
-        else echo "no es imagen";
-
+        echo "<pre>";
+        print_r($_FILES);
         die();
-
-        $result = Application::$app->GlobalFunctions->sendImage();
-
-        if($result) {
-            echo $result;
-        }
-        else {
-            echo "no se pudo subir la imagen";
-        }
-
-        die();
-
         
 
         return;

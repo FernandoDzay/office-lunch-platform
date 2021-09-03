@@ -177,11 +177,7 @@
             return $day;
         }
 
-        public function sendImage() {
-
-            /* echo "<pre>";
-            print_r($_FILES);
-            die(); */
+        /* public function sendImage() {
 
             if( empty($_FILES) ) return false;
             if( !isset($_FILES['image']) ) return false;
@@ -209,7 +205,7 @@
                 return $result;
             }
 
-        }
+        } */
 
         public function generateImage() {
             if( empty($_FILES) ) return false;

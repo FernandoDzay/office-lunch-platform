@@ -1,4 +1,5 @@
-<form class="edit-food-form">
+<form class="edit-food-form" method="POST" enctype="multipart/form-data">
+<!-- <form action="/test" class="edit-food-form"> -->
 
     <input type="hidden" name="id" value="<?= $data['id'] ?>">
     <input type="hidden" name="is_temporal" value="<?= $data['is_temporal'] ?>">
@@ -20,7 +21,7 @@
         <label class="control-label">Cambia la imagen (opcional)</label>
         <div>
             <input type="text" readonly="" class="form-control" placeholder="Browse...">
-            <input type="file" name="food_image" value="<?= $data['food_image'] ?>">
+            <input type="file" name="image">
         </div>
     </div>
     <p class="text-center">

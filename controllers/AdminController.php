@@ -126,18 +126,27 @@
 
             $food = [
                 'id' => $_REQUEST['id'],
-                'food_image' => $_REQUEST['food_image'],
                 'short_name' => $_REQUEST['short_name'],
                 'is_temporal' => $_REQUEST['is_temporal'],
                 'food' => $_REQUEST['food'],
             ];
             
             if(isset($_REQUEST['submit-edit'])) {
+
+                if( isset($_FILES['image']) ) {
+
+                    $mime_type = $_FILES['image']['type'];
+
+                    if( Application::$app->GlobalFunctions->isImage($mime_type) ) {
+                        $image = Application::$app->GlobalFunctions->generateImage();
+                        $food['image'] = $image;
+                    }
+                }
+
+
                 $url = "http://local.api-office-lunch/edit-food";
-
                 $rest = new REST();
-
-                $rest->put($url, $food);
+                $rest->post($url, $food);
                 header('Location: insert-food-of-the-day');
             }
             else {
