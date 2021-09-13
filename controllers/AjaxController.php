@@ -69,6 +69,47 @@ class AjaxController extends Controller {
 
     }
 
+    public function actionChangeimage() {
+
+        header('Content-type: application/json');
+
+        $response = [
+            "status" => false,
+            "message" => "Ocurrió un problema"
+        ];
+
+
+        if( isset($_FILES['image']) && isset($_REQUEST['user_id']) ) {
+
+            $mime_type = $_FILES['image']['type'];
+
+            if( Application::$app->GlobalFunctions->isImage($mime_type) ) {
+                $image = Application::$app->GlobalFunctions->generateImage();
+            }
+
+
+            $rest = new REST();
+            $url = "http://local.api-office-lunch/change-user-image";
+    
+            $result = $rest->post($url, ['image' => $image, 'user_id' => $_REQUEST['user_id']]);
+
+            $response = $result;
+    
+            if(isset($result['status']) && $result['status'] == true) {
+                $response['status'] = true;
+                $response['message'] = "Se actualizó la foto de perfil correctamente";
+                $response['src'] = $result['src'];
+            }
+        }
+
+
+        
+        echo json_encode($response);
+
+        return;
+
+    }
+
 
 
 

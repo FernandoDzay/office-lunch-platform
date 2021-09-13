@@ -13,7 +13,7 @@
 <!-- <div id="" class="card card-body"> -->
 <div id="<?= $data['id'] ?>" class="food-card<?= $extra_padding ?>">
     <div class="content">
-        <img class="mb-3" src="<?= $data['food_image'] ?>" alt="">
+        <img class="mb-3" src="http://local.api-office-lunch<?= $data['food_image'] ?>" alt="">
         <p class="title"><?= $data['food'] ?></p>
 
         <?php if(isset($data['delete_btn'])): ?>

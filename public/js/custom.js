@@ -169,6 +169,46 @@ function setHasBeenRead() {
     }
 }
 
+$('#avatar_img').on('click', function(){
+    $('#change_image_modal').modal('show');
+});
+
+$("#change_image_form").submit(function(e) {
+
+    e.preventDefault();
+
+    var fd = new FormData();
+    var files = $("#image_file")[0].files[0];
+
+    if(files !== undefined) {
+        fd.append('image', files);
+        fd.append('user_id', user_id);
+    
+        $.ajax({    
+            url: "/change-user-image",
+            type: "post",
+            data: fd,
+            contentType: false,
+            processData: false,
+        })
+        .done(function( data ) {
+    
+            response = JSON.parse(data);
+    
+            if(response.status == true) {
+                $("#avatar_img").attr("src", "http://local.api-office-lunch" + response.src);
+            }
+            else {
+                alert("Ocurrió un problema, acude al administrador");
+            }
+    
+            $("#change_image_modal").modal("hide");
+            
+        });
+    }
+
+});
+
 
 
 

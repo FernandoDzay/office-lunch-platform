@@ -42,6 +42,7 @@ $config = [
                 [ 'pattern' => '/make-order', 'route' => 'ajax/makeorder'],
                 [ 'pattern' => '/get-notifications', 'route' => 'ajax/getnotifications'],
                 [ 'pattern' => '/update-notifications', 'route' => 'ajax/updatenotifications'],
+                [ 'pattern' => '/change-user-image', 'route' => 'ajax/changeimage'],
                 
                 
 

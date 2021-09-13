@@ -199,3 +199,6 @@ label.checkbox {
 .dashboard-Navbar > ul > li > a > span.badge {
     transition: initial;
 }
+#avatar_img {
+    cursor: pointer;
+}

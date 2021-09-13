@@ -25,7 +25,7 @@
             <!-- SideBar User info -->
             <div class="full-box dashboard-sideBar-UserInfo">
                 <figure class="full-box">
-                    <img src="./assets/img/avatar.jpg" alt="UserIcon">
+                    <img id="avatar_img" src="http://local.api-office-lunch<?= $data['image'] ?>" alt="UserIcon">
                     <figcaption class="text-center text-titles"><?= $data['username'] ?></figcaption>
                     <?php if($data['lunch_hour'] != false): ?>
                         <p style="margin-top: 10px;margin-bottom:-10px;">Horario: <?= substr($data['lunch_hour']['start_time'], 0, -3) ?> - <?= substr($data['lunch_hour']['end_time'], 0, -3) ?></p>
@@ -110,23 +110,30 @@
         </div>
     </section>
 
-    <!-- Dialog help -->
-    <div class="modal fade" tabindex="-1" role="dialog" id="Dialog-Help">
+    <!-- Modal Change image -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="change_image_modal">
+
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Help</h4>
+            <form id="change_image_form" action="/change-user-image" method="POST" enctype="multipart/form-data">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Cambiar foto de perfil</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="control-label">Cambia la imagen (opcional)</label>
+                            <div>
+                                <input type="text" readonly="" class="form-control" placeholder="Browse...">
+                                <input type="file" id="image_file" name="image" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" id="change_image_btn" class="btn btn-primary btn-raised"><i class="zmdi zmdi-thumb-up"></i> Ok</button>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt beatae esse velit ipsa sunt incidunt aut voluptas, nihil reiciendis maiores eaque hic vitae saepe voluptatibus. Ratione veritatis a unde autem!
-                    </p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary btn-raised" data-dismiss="modal"><i class="zmdi zmdi-thumb-up"></i> Ok</button>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
 
@@ -139,14 +146,6 @@
             </div>
             <div class="list-group" style="display:none;">
                            
-
-
-            
-
-
-
-
-
             </div>
 
         </div>
@@ -171,16 +170,6 @@
                 <a href="#!" class="btn-Notifications-area" id="notifications_btn">
                     <i class="zmdi zmdi-notifications-none"></i>
                     <span id="notifications_number" class="badge" style="display:none;">0</span>
-                </a>
-            </li>
-            <li>
-                <a href="#!" class="btn-search">
-                    <i class="zmdi zmdi-search"></i>
-                </a>
-            </li>
-            <li>
-                <a href="#!" class="btn-modal-help">
-                    <i class="zmdi zmdi-help-outline"></i>
                 </a>
             </li>
         </ul>

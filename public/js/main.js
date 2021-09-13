@@ -63,9 +63,6 @@ $(document).ready(function(){
 		  )
 		});
 	});
-	$('.btn-modal-help').on('click', function(){
-		$('#Dialog-Help').modal('show');
-	});
 });
 (function($){
     $(window).on("load",function(){

@@ -9,10 +9,13 @@
 
         public function getHeaderData() {
 
+            $user = $this->getUser();
+
             $data = [
-                'username' => $this->getUserName(),
+                'username' => $user['username'],
                 'user_orders' => $this->getUserOrders(),
                 'lunch_hour' => $this->getLunchHour(),
+                'image' => $user['image'],
             ];
 
             return $data;
@@ -21,9 +24,9 @@
 
 
         //----------
-        public function getUserName() {
+        public function getUser() {
 
-            $url = "http://local.api-office-lunch/get-username";
+            $url = "http://local.api-office-lunch/get-user";
             $rest = new REST();
             $response = $rest->get($url, ['user_id' => $_SESSION['user_id']]);
 
@@ -33,6 +36,16 @@
         }
 
         public function getLunchHour() {
+            $url = "http://local.api-office-lunch/get-lunch-hour";
+            $rest = new REST();
+            $response = $rest->get($url, ['user_id' => $_SESSION['user_id']]);
+
+            $lunch_hour = json_decode($response, true);
+
+            return $lunch_hour;
+        }
+
+        public function getUserAvatar() {
             $url = "http://local.api-office-lunch/get-lunch-hour";
             $rest = new REST();
             $response = $rest->get($url, ['user_id' => $_SESSION['user_id']]);
