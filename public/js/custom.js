@@ -196,7 +196,7 @@ $("#change_image_form").submit(function(e) {
             response = JSON.parse(data);
     
             if(response.status == true) {
-                $("#avatar_img").attr("src", "http://local.api-office-lunch" + response.src);
+                $("#avatar_img").attr("src", base_url + response.src);
             }
             else {
                 alert("Ocurrió un problema, acude al administrador");

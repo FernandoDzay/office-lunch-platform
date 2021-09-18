@@ -1,6 +1,7 @@
 RewriteEngine on
+RewriteBase /
 
-RewriteRule ^custom/(.+)$ img.php?%{QUERY_STRING}&image=$1
+RewriteRule ^custom/(.+)$ url.php?%{QUERY_STRING}&image=$1
 
 
 

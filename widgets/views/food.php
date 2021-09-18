@@ -1,5 +1,6 @@
 <?php
     
+    use App\core\Config;
 
     if(isset($data['delete_btn']) || isset($data['delete_food']) || isset($data['make_permanent']) || isset($data['edit_btn']) ) {
         $extra_padding = " extra-padding";
@@ -13,7 +14,7 @@
 <!-- <div id="" class="card card-body"> -->
 <div id="<?= $data['id'] ?>" class="food-card<?= $extra_padding ?>">
     <div class="content">
-        <img class="mb-3" src="http://local.api-office-lunch<?= $data['food_image'] ?>" alt="">
+        <img class="mb-3" src="<?= Config::getBaseUrl() ?><?= $data['food_image'] ?>" alt="">
         <p class="title"><?= $data['food'] ?></p>
 
         <?php if(isset($data['delete_btn'])): ?>

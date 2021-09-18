@@ -1,3 +1,9 @@
+<?php
+
+    use App\core\Config;
+
+?>
+
 <form class="edit-food-form" method="POST" enctype="multipart/form-data">
 <!-- <form action="/test" class="edit-food-form"> -->
 
@@ -6,7 +12,7 @@
     <input type="hidden" name="submit-edit" value="Editar">
 
     <div class="img-container">
-        <img class="mb-3" src="http://local.api-office-lunch<?= $data['food_image'] ?>" alt="">
+        <img class="mb-3" src="<?= Config::getBaseUrl() ?><?= $data['food_image'] ?>" alt="">
     </div>
 
     <div class="form-group label-floating">

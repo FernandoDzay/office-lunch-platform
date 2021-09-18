@@ -1,6 +1,7 @@
 <?php
 
     use App\core\Application;
+    use App\core\Config;
 
     $data = Application::$app->HeaderFunctions->getHeaderData();
 
@@ -25,7 +26,7 @@
             <!-- SideBar User info -->
             <div class="full-box dashboard-sideBar-UserInfo">
                 <figure class="full-box">
-                    <img id="avatar_img" src="http://local.api-office-lunch<?= $data['image'] ?>" alt="UserIcon">
+                    <img id="avatar_img" src="<?= Config::getBaseUrl() ?><?= $data['image'] ?>" alt="UserIcon">
                     <figcaption class="text-center text-titles"><?= $data['username'] ?></figcaption>
                     <?php if($data['lunch_hour'] != false): ?>
                         <p style="margin-top: 10px;margin-bottom:-10px;">Horario: <?= substr($data['lunch_hour']['start_time'], 0, -3) ?> - <?= substr($data['lunch_hour']['end_time'], 0, -3) ?></p>

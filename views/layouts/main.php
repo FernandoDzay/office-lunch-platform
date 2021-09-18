@@ -2,6 +2,7 @@
 
 	use App\widgets\HeaderWidget;
 	use App\widgets\FooterWidget;
+	use App\core\Config;
 
 ?>
 
@@ -16,7 +17,8 @@
 	<link rel="stylesheet" href="./css/custom.css">
 
 	<script>
-		user_id = <?= $_SESSION['user_id'] ?>
+		user_id = <?= $_SESSION['user_id'] ?>;
+		base_url = "<?= Config::getBaseUrl() ?>";
 	</script>
 
 </head>
