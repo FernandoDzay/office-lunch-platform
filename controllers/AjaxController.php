@@ -46,7 +46,7 @@ class AjaxController extends Controller {
         $user_id = $_REQUEST['user_id'];
 
         $rest = new REST();
-        $url = "http://local.api-office-lunch/get-notifications";
+        $url = "/get-notifications";
 
         $notifications = $rest->get($url, ['user_id' => $user_id]);
 
@@ -63,7 +63,7 @@ class AjaxController extends Controller {
 
 
         $rest = new REST();
-        $url = "http://local.api-office-lunch/update-notifications";
+        $url = "/update-notifications";
         $rest->put($url, ['ids' => $ids]);
 
 
@@ -89,7 +89,7 @@ class AjaxController extends Controller {
 
 
             $rest = new REST();
-            $url = "http://local.api-office-lunch/change-user-image";
+            $url = "/change-user-image";
     
             $result = $rest->post($url, ['image' => $image, 'user_id' => $_REQUEST['user_id']]);
 

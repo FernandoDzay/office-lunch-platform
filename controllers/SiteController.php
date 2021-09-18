@@ -42,7 +42,7 @@ class SiteController extends Controller {
     public function actionLogin() {
 
         if( isset($_COOKIE['office_lunch_user_id']) && isset($_COOKIE['office_lunch_token']) ) {
-            $url = "http://local.api-office-lunch/token-login";
+            $url = "/token-login";
 
             $user = [
                 'id' => $_COOKIE['office_lunch_user_id'],

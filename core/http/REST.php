@@ -1,23 +1,23 @@
 <?php
 
     namespace App\core\http;
+    use App\core\Config;
 
     class REST {
 
         private $handle;
+        private $base_url;
 
         public function __construct() {
             $this->handle = curl_init();
+            $this->base_url = $this->getBaseUrl();
 
-            // Will return the response, if false it prints the response
             curl_setopt($this->handle, CURLOPT_RETURNTRANSFER, true);
-
-            // set content type
-            //curl_setopt($this->handle, CURLOPT_HTTPHEADER, ['content-type: application/json']);
         }
 
 
-        public function get($url, $params = []) {
+        public function get($rel_url, $params = []) {
+            $url = $this->base_url . $rel_url;
 
             if(!empty($params)) {
                 $url .= "?".http_build_query($params);
@@ -38,7 +38,8 @@
             return $result;
         }
 
-        public function post($url, $params = []) {
+        public function post($rel_url, $params = []) {
+            $url = $this->base_url . $rel_url;
             
             curl_setopt($this->handle, CURLOPT_URL, $url);
 
@@ -53,7 +54,8 @@
             return $result;
         }
 
-        public function put($url, $params = []) {
+        public function put($rel_url, $params = []) {
+            $url = $this->base_url . $rel_url;
 
             if(!empty($params)) {
                 $url .= "?".http_build_query($params);
@@ -72,7 +74,8 @@
 
         }
 
-        public function delete($url, $params = []) {
+        public function delete($rel_url, $params = []) {
+            $url = $this->base_url . $rel_url;
 
             if(!empty($params)) {
                 $url .= "?".http_build_query($params);
@@ -87,6 +90,13 @@
             curl_close($this->handle);
 
             return $result;
+        }
+
+
+        //---------------- private
+
+        public function getBaseUrl() {
+            return Config::getBaseUrl();
         }
 
 

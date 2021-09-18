@@ -26,7 +26,7 @@
         //----------
         public function getUser() {
 
-            $url = "http://local.api-office-lunch/get-user";
+            $url = "/get-user";
             $rest = new REST();
             $response = $rest->get($url, ['user_id' => $_SESSION['user_id']]);
 
@@ -36,7 +36,7 @@
         }
 
         public function getLunchHour() {
-            $url = "http://local.api-office-lunch/get-lunch-hour";
+            $url = "/get-lunch-hour";
             $rest = new REST();
             $response = $rest->get($url, ['user_id' => $_SESSION['user_id']]);
 
@@ -46,7 +46,7 @@
         }
 
         public function getUserAvatar() {
-            $url = "http://local.api-office-lunch/get-lunch-hour";
+            $url = "/get-lunch-hour";
             $rest = new REST();
             $response = $rest->get($url, ['user_id' => $_SESSION['user_id']]);
 

@@ -14,7 +14,7 @@
 
             if(isset($_REQUEST['food_id'])) {
 
-                $url = "http://local.api-office-lunch/insert-food-of-the-day";
+                $url = "/insert-food-of-the-day";
 
                 $rest = new REST();
 
@@ -24,7 +24,7 @@
             }
             elseif(isset($_REQUEST['delete_id'])) {
 
-                $url = "http://local.api-office-lunch/delete-food-from-menu";
+                $url = "/delete-food-from-menu";
 
                 $rest = new REST();
 
@@ -34,7 +34,7 @@
             }
             elseif(isset($_REQUEST['make_permanent'])) {
 
-                $url = "http://local.api-office-lunch/make-food-permanent";
+                $url = "/make-food-permanent";
 
                 $rest = new REST();
 
@@ -44,7 +44,7 @@
             }
             elseif(isset($_REQUEST['delete_food'])) {
 
-                $url = "http://local.api-office-lunch/delete-food";
+                $url = "/delete-food";
 
                 $rest = new REST();
 
@@ -82,7 +82,7 @@
                     $is_temporal = "DEFAULT";
                 }
                 
-                $url = "http://local.api-office-lunch/insert-food";
+                $url = "/insert-food";
 
                 $food['food'] = $food_name;
                 $food['short_name'] = $short_name;
@@ -96,14 +96,14 @@
             }
             else {
 
-                $url = "http://local.api-office-lunch/get-foods";
+                $url = "/get-foods";
                 $rest = new REST();
                 $response = $rest->get($url);
 
                 $foods = json_decode($response, true);
 
 
-                $url = "http://local.api-office-lunch/menu";
+                $url = "/menu";
                 $rest = new REST();
                 $response = $rest->get($url);
 
@@ -144,7 +144,7 @@
                 }
 
 
-                $url = "http://local.api-office-lunch/edit-food";
+                $url = "/edit-food";
                 $rest = new REST();
                 $rest->post($url, $food);
                 header('Location: insert-food-of-the-day');
@@ -158,7 +158,7 @@
         public function actionInsertextras() {
 
             if(isset($_REQUEST['save_food'])) {
-                $url = "http://local.api-office-lunch/insert-extra";
+                $url = "/insert-extra";
 
                 $extra = [
                     'extra' => $_REQUEST['extra'],
@@ -172,13 +172,13 @@
             }
 
             if(isset($_REQUEST['delete'])) {
-                $url = "http://local.api-office-lunch/delete-extra";
+                $url = "/delete-extra";
                 $rest = new REST();
                 $extras = $rest->delete($url, ['id' => $_REQUEST['id']]);
                 header("Location: /insert-extras");
             }
 
-            $url = "http://local.api-office-lunch/get-extras";
+            $url = "/get-extras";
 
             $rest = new REST();
 
@@ -192,7 +192,7 @@
         public function actionEditextra() {
 
             if(isset($_REQUEST['submit_edit'])) {
-                $url = "http://local.api-office-lunch/edit-extra";
+                $url = "/edit-extra";
 
                 $extra = [
                     'id' => $_REQUEST['id'],

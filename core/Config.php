@@ -40,6 +40,18 @@
             return self::$config['backendApi'];
         }
 
+        public static function getBaseUrl() {
+            if( self::$config['dev'] == true ) {
+                return self::$config['dev_url'];
+            }
+            else if( self::$config['dev'] == false ) {
+                return self::$config['prod_url'];
+            }
+            else {
+                return "";
+            }
+        }
+
 
         private function setConfig() {
             date_default_timezone_set('America/Merida');

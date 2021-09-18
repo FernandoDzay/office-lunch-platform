@@ -6,6 +6,9 @@ $config = [
     'layout' => 'main',
     'db' => $db,
     'backendApi' => false,
+    'dev' => true,
+    'prod_url' => "https://",
+    'dev_url' => "http://local.api-office-lunch",
     'components' => [
         'functions' => [
             'GlobalFunctions' => [ 'class' => 'App\GlobalFunctions\GlobalFunctions'],

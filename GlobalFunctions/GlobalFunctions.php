@@ -20,7 +20,7 @@
 
         public function getMenu() {
 
-            $url = "http://local.api-office-lunch/menu";
+            $url = "/menu";
             $rest = new REST();
             $response = $rest->get($url);
 
@@ -31,7 +31,7 @@
 
         public function getExtras() {
 
-            $url = "http://local.api-office-lunch/get-extras";
+            $url = "/get-extras";
             $rest = new REST();
             $response = $rest->get($url);
 
@@ -42,7 +42,7 @@
 
         public function getUserOrders() {
 
-            $url = "http://local.api-office-lunch/orders/get-by-user";
+            $url = "/orders/get-by-user";
             $rest = new REST();
             $response = $rest->get($url, ['user_id' => $_SESSION['user_id']]);
 
@@ -52,7 +52,7 @@
         }
 
         public function addUserOrder($user_id, $order, $is_extra = null) {
-            $url = "http://local.api-office-lunch/orders/add";
+            $url = "/orders/add";
             $rest = new REST();
 
             $data = [
@@ -68,7 +68,7 @@
 
         public function deleteOrder($order_id) {
 
-            $url = "http://local.api-office-lunch/orders/delete";
+            $url = "/orders/delete";
             $rest = new REST();
             $rest->delete($url, ['order_id' => $order_id]);
 
@@ -76,7 +76,7 @@
 
         public function getUsers() {
             $rest = new REST();
-            $url = "http://local.api-office-lunch/get-users";
+            $url = "/get-users";
 
             $users = $rest->get($url);
 
@@ -85,7 +85,7 @@
 
         public function getGroups() {
             $rest = new REST();
-            $url = "http://local.api-office-lunch/get-groups";
+            $url = "/get-groups";
 
             $groups = $rest->get($url);
 
@@ -95,8 +95,8 @@
         public function addUserGroup($user_id, $group_id) {
             $rest = new REST();
 
-            $url_post = "http://local.api-office-lunch/set-user-group";
-            $url_update = "http://local.api-office-lunch/update-user-group";
+            $url_post = "/set-user-group";
+            $url_update = "/update-user-group";
 
             if($this->userHasGroup($user_id)) {
                 $rest->put($url_update, ['user_id' => $user_id, 'group_id' => $group_id],);
@@ -110,14 +110,14 @@
 
             $rest = new REST();
 
-            $url = "http://local.api-office-lunch/remove-user-group";
+            $url = "/remove-user-group";
 
             $rest->delete($url, ['user_id' => $user_id]);
         }
 
         public function getGroupsTablesData() {
             $rest = new REST();
-            $url = "http://local.api-office-lunch/groups-data";
+            $url = "/groups-data";
 
             $data = $rest->get($url);
 
@@ -126,7 +126,7 @@
 
         public function getMyWeekOrders() {
             $rest = new REST();
-            $url = "http://local.api-office-lunch/get-week-orders-by-user";
+            $url = "/get-week-orders-by-user";
 
             $data = $rest->get($url, ['user_id' => $_SESSION['user_id']]);
 
@@ -135,7 +135,7 @@
 
         public function getWeekOrders() {
             $rest = new REST();
-            $url = "http://local.api-office-lunch/get-week-orders";
+            $url = "/get-week-orders";
 
             $data = $rest->get($url);
 
@@ -144,7 +144,7 @@
 
         public function getOrdersData() {
             $rest = new REST();
-            $url = "http://local.api-office-lunch/get-orders-data";
+            $url = "/get-orders-data";
 
             $data = $rest->get($url);
 
@@ -153,7 +153,7 @@
 
         public function makeOrder() {
             $rest = new REST();
-            $url = "http://local.api-office-lunch/make-order";
+            $url = "/make-order";
 
             $data = $rest->get($url);
 
@@ -202,7 +202,7 @@
 
         private function userHasGroup($user_id) {
             $rest = new REST();
-            $url = "http://local.api-office-lunch/user-has-group";
+            $url = "/user-has-group";
 
             $res = json_decode( $rest->get($url, ['user_id' => $user_id]), true);
 

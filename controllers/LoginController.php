@@ -20,7 +20,7 @@ class LoginController extends Controller {
             header('Location: /login');
         }
 
-        $url = "http://local.api-office-lunch/login";
+        $url = "/login";
 
         $token = Application::$app->GlobalFunctions->generateToken();
 
@@ -58,7 +58,7 @@ class LoginController extends Controller {
             header('Location: /register');
         }
 
-        $url = "http://local.api-office-lunch/register";
+        $url = "/register";
 
 
         $user = [
