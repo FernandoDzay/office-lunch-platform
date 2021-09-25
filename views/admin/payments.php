@@ -1,6 +1,15 @@
+<script src="./js/process.min.js" defer></script>
+<script src="./js/calentim.min.js" defer></script>
+<link rel="stylesheet" href="./css/calendar.min.css">
+
+<script>
+    include_datepicker = 1;
+</script>
+
+
 <div class="container-fluid">
     <div class="page-header">
-        <h1 class="text-titles">Tablas de pagos</h1>
+        <h1 class="text-titles">Tablas de pagos <small><?= isset($_REQUEST['date']) ? "de fecha: " . $_REQUEST['date'] : "de esta semana" ?></small></h1>
     </div>
 </div>
 
@@ -77,6 +86,16 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="col-xs-12 col-lg-2 col-sm-4" style="float:right;">
+            <form method="post">
+                <p class="lead" style="margin-bottom:0;margin-top:15px;">Elige una fecha</p>
+                <div class="form-group" style="margin-top:0;">
+                    <label class="control-label">Puede ser cualquier día de la semana</label>
+                    <input id="my_datepicker" class="form-control" type="text" name="date" readonly>
+                </div>
+                <button class="btn btn-info btn-raised btn-sm settings-btn"><i class="zmdi zmdi-floppy"></i>Elegir fecha</button>
+            </form>
         </div>
     </div>
 </div>

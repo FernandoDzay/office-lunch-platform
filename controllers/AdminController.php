@@ -220,33 +220,39 @@
 
         public function actionGroups() {
 
+            $tab = 0;
+            $user_selected = 0;
+            $group_selected = 0;
+
             if(isset($_REQUEST['add_user_group'])) {
                 Application::$app->GlobalFunctions->addUserGroup($_REQUEST['user_id'], $_REQUEST['group_id']);
+                $user_selected = $_REQUEST['user_id'];
+                $group_selected = $_REQUEST['group_id'];
             }
             else if(isset($_REQUEST['remove_user_from_group'])) {
                 Application::$app->GlobalFunctions->removeUserGroup($_REQUEST['user_id']);
+                $tab = $_REQUEST['tab'];
             }
 
             $users = Application::$app->GlobalFunctions->getUsers();
             $groups = Application::$app->GlobalFunctions->getGroups();
             $groups_tables_data = Application::$app->GlobalFunctions->getGroupsTablesData();
 
+
             $data = [
                 'users' => $users,
                 'groups' => $groups,
                 'groups_tables_data' => $groups_tables_data,
+                'tab' => $tab,
+                'user_selected' => $user_selected,
+                'group_selected' => $group_selected,
             ];
 
-
-            /* if(isset($_REQUEST['remove_user_from_group'])) {
-                return $this->render("groups", $data);
-            }
-            else {
-            } */
             return $this->render("groups", $data);
         }
 
         public function actionPayments() {
+
             $orders = Application::$app->GlobalFunctions->getWeekOrders();
             $users_array = Application::$app->GlobalFunctions->getUsers();
             $orders_data = Application::$app->GlobalFunctions->getOrdersData();
@@ -257,6 +263,7 @@
                     $users[$user['username']] = 0;
                 }
             }
+
 
             $days_of_week = [
                 'lunes' => 0,
@@ -271,11 +278,6 @@
                 $prices_by_user[$user] = $days_of_week;
             }
 
-            /* echo "<pre>";
-            print_r($orders_data);
-            die(); */
-
-            // 
             foreach($prices_by_user as $user => $days) {
                 foreach($days as $day => $user_total) {
                     if( isset($orders[$day][$user]) ) {
@@ -306,14 +308,41 @@
             }
 
             
-            /* echo "<pre>";
-            print_r($total_by_user);
-            die(); */
             return $this->render('payments', [
                 'users' => $users, 
                 'total_by_user' => $total_by_user, 
                 'orders_data' => $orders_data,
             ]);
+        }
+
+        public function actionSettings() {
+
+
+
+            if( isset($_REQUEST['save']) ) {
+
+                $groups_rotate = 0;
+                $menu_activated = 0;
+
+                if(isset($_REQUEST['groups_rotate'])) {
+                    $groups_rotate = 1;
+                }
+                if(isset($_REQUEST['menu_activated'])) {
+                    $menu_activated = 1;
+                }
+
+                $settings = [
+                    'save' => 1,
+                    'groups_rotate' => $groups_rotate,
+                    'menu_activated' => $menu_activated,
+                ];
+
+                Application::$app->GlobalFunctions->updateSettings($settings);
+            }
+
+            $settings = Application::$app->GlobalFunctions->getSettings();
+
+            return $this->render('settings', ['settings' => $settings]);
         }
 
 

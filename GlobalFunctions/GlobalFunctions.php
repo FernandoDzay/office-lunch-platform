@@ -128,7 +128,8 @@
             $rest = new REST();
             $url = "/get-week-orders-by-user";
 
-            $data = $rest->get($url, ['user_id' => $_SESSION['user_id']]);
+            if( isset($_REQUEST['date']) ) $data = $rest->get($url, ['date' => $_REQUEST['date'], 'user_id' => $_SESSION['user_id']]);
+            else $data = $rest->get($url, ['user_id' => $_SESSION['user_id']]);
 
             return json_decode($data, true);
         }
@@ -137,7 +138,8 @@
             $rest = new REST();
             $url = "/get-week-orders";
 
-            $data = $rest->get($url);
+            if( isset($_REQUEST['date']) ) $data = $rest->get($url, ['date' => $_REQUEST['date']]);
+            else $data = $rest->get($url);
 
             return json_decode($data, true);
         }
@@ -146,7 +148,8 @@
             $rest = new REST();
             $url = "/get-orders-data";
 
-            $data = $rest->get($url);
+            if( isset($_REQUEST['date']) ) $data = $rest->get($url, ['date' => $_REQUEST['date']]);
+            else $data = $rest->get($url);
 
             return json_decode($data, true);
         }
@@ -194,6 +197,22 @@
 
             if( in_array($mime_type, $array) ) return true;
             else return false;
+        }
+
+        public function getSettings() {
+            $rest = new REST();
+            $url = "/settings";
+
+            $data = $rest->get($url);
+            return json_decode($data, true);
+        }
+
+        public function updateSettings($settings) {
+            $rest = new REST();
+            $url = "/update-settings";
+
+            $data = $rest->put($url, $settings);
+            return json_decode($data, true);
         }
 
 

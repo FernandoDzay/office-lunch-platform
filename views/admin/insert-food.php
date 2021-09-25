@@ -101,18 +101,20 @@
     ?>
 </div>
 
-<div class="container-fluid">
-    <div class="page-header">
-        <h1 class="text-titles">Menú</h1>
+<?php if(!empty($menu)): ?>
+    <div class="container-fluid">
+        <div class="page-header">
+            <h1 class="text-titles">Menú</h1>
+        </div>
     </div>
-</div>
 
-<div class="full-box custom-full-box text-center" style="padding: 30px 10px;">
-    <?php
-        foreach($menu as $key => $food) {
-            $food['btn_text'] = 'Agregar';
-            $food['delete_btn'] = true;
-            FoodWidget::begin(['data' => $food]);
-        }
-    ?>
-</div>
+    <div class="full-box custom-full-box text-center" style="padding: 30px 10px;">
+        <?php
+            foreach($menu as $key => $food) {
+                $food['btn_text'] = 'Agregar';
+                $food['delete_btn'] = true;
+                FoodWidget::begin(['data' => $food]);
+            }
+        ?>
+    </div>
+<?php endif; ?>

@@ -5,9 +5,7 @@
 
     $data = Application::$app->HeaderFunctions->getHeaderData();
 
-    /* echo "<pre>";
-    print_r($data);
-    die(); */
+    $is_admin = $data['is_admin'];
 
 ?>
 
@@ -33,11 +31,13 @@
                     <?php endif; ?>
                 </figure>
                 <ul class="full-box list-unstyled text-center">
-                    <li>
-                        <a href="#!">
-                            <i class="zmdi zmdi-settings"></i>
-                        </a>
-                    </li>
+                    <?php if( $data['is_admin'] ): ?>
+                        <li>
+                            <a href="/settings">
+                                <i class="zmdi zmdi-settings"></i>
+                            </a>
+                        </li>
+                    <?php endif; ?>
                     <li>
                         <a href="#!" class="btn-exit-system">
                             <i class="zmdi zmdi-power"></i>
@@ -52,35 +52,27 @@
                         <i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Dashboard
                     </a>
                 </li>
-                <li>
-                    <a href="#!" class="btn-sideBar-SubMenu">
-                        <i class="zmdi zmdi-shield-security zmdi-hc-fw"></i> Administration <i class="zmdi zmdi-caret-down pull-right"></i>
-                    </a>
-                    <ul class="list-unstyled full-box">
-                        <li>
-                            <a href="/insert-food-of-the-day"><i class="zmdi zmdi-timer zmdi-hc-fw"></i>Insertar comidas del día</a>
-                        </li>
-                        <li>
-                            <a href="/insert-extras"><i class="zmdi zmdi-book zmdi-hc-fw"></i>Insertar Extras</a>
-                        </li>
-                        <li>
-                            <a href="/groups"><i class="zmdi zmdi-graduation-cap zmdi-hc-fw"></i>Groups</a>
-                        </li>
-                        <li>
-                            <a href="/payments"><i class="zmdi zmdi-graduation-cap zmdi-hc-fw"></i>Pagos</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#!" class="btn-sideBar-SubMenu">
-                        <i class="zmdi zmdi-account-add zmdi-hc-fw"></i> Users <i class="zmdi zmdi-caret-down pull-right"></i>
-                    </a>
-                    <ul class="list-unstyled full-box">
-                        <li>
-                            <a href="admin.html"><i class="zmdi zmdi-account zmdi-hc-fw"></i> Admin</a>
-                        </li>
-                    </ul>
-                </li>
+                <?php if( $is_admin ): ?>
+                    <li>
+                        <a href="#!" class="btn-sideBar-SubMenu">
+                            <i class="zmdi zmdi-shield-security zmdi-hc-fw"></i> Administration <i class="zmdi zmdi-caret-down pull-right"></i>
+                        </a>
+                        <ul class="list-unstyled full-box">
+                            <li>
+                                <a href="/insert-food-of-the-day"><i class="zmdi zmdi-timer zmdi-hc-fw"></i>Insertar comidas del día</a>
+                            </li>
+                            <li>
+                                <a href="/insert-extras"><i class="zmdi zmdi-book zmdi-hc-fw"></i>Insertar Extras</a>
+                            </li>
+                            <li>
+                                <a href="/groups"><i class="zmdi zmdi-graduation-cap zmdi-hc-fw"></i>Groups</a>
+                            </li>
+                            <li>
+                                <a href="/payments"><i class="zmdi zmdi-graduation-cap zmdi-hc-fw"></i>Pagos</a>
+                            </li>
+                        </ul>
+                    </li>
+                <?php endif; ?>
                 <li>
                     <a href="#!" class="btn-sideBar-SubMenu">
                         <i class="zmdi zmdi-case zmdi-hc-fw"></i> Pedidos <i class="zmdi zmdi-caret-down pull-right"></i>
@@ -162,11 +154,14 @@
             <li class="pull-left">
                 <a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
             </li>
-            <li>
-                <a href="#!" class="make-order">
-                    <i class="zmdi zmdi-cutlery"></i>
-                </a>
-            </li>
+            <?php if( $is_admin ): ?>
+                <li>
+                    <a href="#!" class="make-order">
+                        <i class="zmdi zmdi-cutlery"></i>
+                    </a>
+                </li>
+            <?php endif; ?>
+
             <li>
                 <a href="#!" class="btn-Notifications-area" id="notifications_btn">
                     <i class="zmdi zmdi-notifications-none"></i>

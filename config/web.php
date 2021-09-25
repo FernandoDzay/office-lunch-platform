@@ -39,6 +39,7 @@ $config = [
                 [ 'pattern' => '/edit-extra', 'route' => 'admin/editextra'],
                 [ 'pattern' => '/groups', 'route' => 'admin/groups'],
                 [ 'pattern' => '/payments', 'route' => 'admin/payments'],
+                [ 'pattern' => '/settings', 'route' => 'admin/settings'],
                 
 
                 // AJAX

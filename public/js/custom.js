@@ -2,9 +2,11 @@ $(".submit-button").click(function(e) {
     e.preventDefault();
     var current = $(this);
     current.toggleClass("is_active");
-    setTimeout(function() {
+    current.attr("disabled", true);
+    current.parent().submit();
+    /* setTimeout(function() {
         current.parent().submit();
-    }, 1000);
+    }, 1000); */
     
 })
 
@@ -209,7 +211,27 @@ $("#change_image_form").submit(function(e) {
 
 });
 
+if(menu_closed == 1) {
+    swal(
+        'Ups! El menú ha sido cerrado',
+        'Si no se ha realizado el pedido, el menú se puede volver a activar, avísale a un administrador, y refresca la página cuando él te avise',
+        'error'
+    );
+}
 
+if(include_datepicker == 1) {
+    $("#my_datepicker").calentim({
+        startEmpty: false, 
+        singleDate: true,
+        autoCloseOnSelect: true,
+        showTimePickers: false,
+        calendarCount: 2,
+        format: 'YYYY-MM-DD',
+        showButtons: false,
+        enableMonthSwitcher:true,
+        locale: "es",
+    });
+}
 
 
 

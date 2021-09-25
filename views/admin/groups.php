@@ -8,16 +8,16 @@
     <div class="row">
         <div class="col-xs-12">
             <ul class="nav nav-tabs" style="margin-bottom: 15px;">
-                <li class="active"><a href="#asignar_grupo" data-toggle="tab">Asignar grupo</a></li>
+                <li class="<?= $tab == 0 ? "active" : "" ?>"><a href="#asignar_grupo" data-toggle="tab">Asignar grupo<?= $tab == 0 ? "<div class='ripple-container'></div>" : "" ?></a></li>
                 <?php foreach($groups_tables_data['groups'] as $i => $group): ?>
-                    <li><a href="#grupo_<?= $group['group_id'] ?>" data-toggle="tab">Grupo <?= $group['group_id'] ?></a></li>
+                    <li class="<?= $tab == $group['group_id'] ? "active" : "" ?>"><a href="#grupo_<?= $group['group_id'] ?>" data-toggle="tab">Grupo <?= $group['group_id'] ?><?= $tab == $group['group_id'] ? "<div class='ripple-container'></div>" : "" ?></a></li>
                 <?php endforeach; ?>
                 <?php if(!empty($groups_tables_data['users_without_group_table'])): ?>
                     <li><a href="#not_asigned" data-toggle="tab">Sin asignar</a></li>
                 <?php endif; ?>
-                </ul>
+            </ul>
             <div id="myTabContent" class="tab-content">
-                <div class="tab-pane fade active in" id="asignar_grupo">
+                <div class="tab-pane fade <?= $tab == 0 ? "active in" : "" ?>" id="asignar_grupo">
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-xs-12 col-md-10 col-md-offset-1">
@@ -26,7 +26,7 @@
                                         <label class="control-label">Usuarios</label>
                                         <select class="form-control" name="user_id">
                                             <?php foreach($users as $key => $user): ?>
-                                                <option value="<?= $user['id'] ?>"><?= $user['username'] ?></option>
+                                                <option <?= $user_selected == $user['id'] ? "selected" : "" ?> value="<?= $user['id'] ?>"><?= $user['username'] ?></option>
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
@@ -34,7 +34,7 @@
                                         <label class="control-label">Grupo</label>
                                         <select class="form-control" name="group_id">
                                             <?php foreach($groups as $key => $group): ?>
-                                                <option value="<?= $group['id'] ?>"><?= $group['id'] ?></option>
+                                                <option <?= $group_selected == $group['id'] ? "selected" : "" ?> value="<?= $group['id'] ?>"><?= $group['id'] ?></option>
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
@@ -47,7 +47,7 @@
                     </div>
                 </div>
                 <?php foreach($groups_tables_data['groups'] as $i => $group): ?>
-                    <div class="tab-pane fade" id="grupo_<?= $group['group_id'] ?>">
+                    <div class="tab-pane fade <?= $tab == $group['group_id'] ? "active in" : "" ?>" id="grupo_<?= $group['group_id'] ?>">
                         <div class="table-responsive">
                             <table class="table table-hover">
                                 <thead>

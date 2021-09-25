@@ -20,6 +20,8 @@
 	<script>
 		user_id = <?= $_SESSION['user_id'] ?>;
 		base_url = "<?= Config::getBaseUrl() ?>";
+		var menu_closed = 0;
+		var include_datepicker = 0;
 	</script>
 
 </head>

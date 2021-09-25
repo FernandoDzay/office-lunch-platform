@@ -16,6 +16,7 @@
                 'user_orders' => $this->getUserOrders(),
                 'lunch_hour' => $this->getLunchHour(),
                 'image' => $user['image'],
+                'is_admin' => (int)$user['is_admin'],
             ];
 
             return $data;

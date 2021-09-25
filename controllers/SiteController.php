@@ -16,6 +16,16 @@ class SiteController extends Controller {
             header("Location: /login");
         }
 
+        $settings = Application::$app->GlobalFunctions->getSettings();
+        if( $settings['menu_activated']['int_value'] == 0 ) {
+
+            if( isset($_REQUEST['add_food']) || isset($_REQUEST['add_extra']) ) {
+                return $this->render('home', ['menu_closed' => 1]);
+            }
+
+            return $this->render('home');
+        }
+
         if(isset($_REQUEST['add_food'])) {
             Application::$app->GlobalFunctions->addUserOrder( $_SESSION['user_id'], $_REQUEST['food'] );
             header("Location: /");
@@ -30,13 +40,11 @@ class SiteController extends Controller {
         $extras = Application::$app->GlobalFunctions->getExtras();
 
         $data = [
-            'user_id' => $_SESSION['user_id'],
             'menu' => $menu,
             'extras' => $extras,
         ];
 
         return $this->render('home', $data);
-
     }
 
     public function actionLogin() {
