@@ -149,8 +149,4 @@
         table2excel.export(document.querySelectorAll(".excel_table"));
     });
 
-    /* $("#export_btn").click(function() {
-        var table2excel = new Table2Excel();
-        table2excel.export(document.querySelectorAll(".excel_table"));
-    }); */
 </script>

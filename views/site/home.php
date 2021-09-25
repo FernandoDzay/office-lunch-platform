@@ -68,7 +68,7 @@
                                                     <td>
                                                         <form method="POST">
                                                             <input type="hidden" name="extra" value="<?= $extra['extra'] ?>">
-                                                            <button name="add_extra" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></button>
+                                                            <button name="add_extra" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-floppy"></i></button>
                                                         </form>
                                                     </td>
                                                 </tr>
