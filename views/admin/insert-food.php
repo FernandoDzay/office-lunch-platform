@@ -9,7 +9,7 @@
     <div class="page-header">
         <h1 class="text-titles">Crear comida</h1>
     </div>
-    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse voluptas reiciendis tempora voluptatum eius porro ipsa quae voluptates officiis sapiente sunt dolorem, velit quos a qui nobis sed, dignissimos possimus!</p>
+    <p class="lead">Aquí puedes crear una nueva comida.</p>
 </div>
 
 
@@ -87,6 +87,7 @@
     <div class="page-header">
         <h1 class="text-titles">Agregar comida del día</h1>
     </div>
+    <p class="lead">Estas son todas las comidas creadas, y disponibles para agregar al menú. Las puedes editar, borrar, o guardar (para que no se borren al día siguiente)</p>
 </div>
 
 <div class="full-box custom-full-box text-center" style="padding: 30px 10px;">
@@ -106,6 +107,7 @@
         <div class="page-header">
             <h1 class="text-titles">Menú</h1>
         </div>
+        <p class="lead">Estas son todas las comidas agregadas al menú. También puedes ver las comidas agregadas al menú en donde dice "Menú de hoy" en la parte de arriba. O también las puedes ver en Home</p>
     </div>
 
     <div class="full-box custom-full-box text-center" style="padding: 30px 10px;">

@@ -1,11 +1,15 @@
 <script src="./js/process.min.js" defer></script>
 <script src="./js/calentim.min.js" defer></script>
+<script src="./js/table2excel.js"></script>
 <link rel="stylesheet" href="./css/calendar.min.css">
 
 <script>
     include_datepicker = 1;
 </script>
 
+<div class="container-fluid" style="margin-bottom:-30px;display:flex;justify-content:flex-end;">
+    <button id="export_btn" class="btn btn-success btn-raised btn-sm settings-btn"><i class="zmdi zmdi-floppy"></i>Generar Excel</button>
+</div>
 
 <div class="container-fluid">
     <div class="page-header">
@@ -87,6 +91,40 @@
                 </div>
             </div>
         </div>
+        <div class="col-xs-12 col-sm-4" style="opacity:0;pointer-events:none;position:absolute;">
+            <ul class="nav nav-tabs" style="margin-bottom: 15px;">
+                <li class="active"><a href="#week" data-toggle="tab">Tabla a exportar</a></li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+                <div class="tab-pane fade active in" id="week">
+                    <div class="table-responsive">
+                        <table class="table table-hover excel_table">
+                            <caption>prueba</caption>
+                            <thead>
+                                <tr>
+                                    <th>Usuario</th>
+                                    <th>Total a pagar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach($total_by_user as $user => $user_payment): ?>
+                                    <?php if($user_payment != 0): ?>
+                                        <tr>
+                                            <td><?= $user ?></td>
+                                            <td><?= $user_payment ?></td>
+                                        </tr>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                                <tr>
+                                    <th align="right"><strong>Total:</strong></th>
+                                    <th><strong><?= $orders_data['users_total_to_pay'] ?></strong></th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="col-xs-12 col-lg-2 col-sm-4" style="float:right;">
             <form method="post">
                 <p class="lead" style="margin-bottom:0;margin-top:15px;">Elige una fecha</p>
@@ -99,3 +137,20 @@
         </div>
     </div>
 </div>
+
+
+
+<script>
+
+    var export_btn = document.getElementById("export_btn");
+
+    export_btn.addEventListener("click", function() {
+        var table2excel = new Table2Excel();
+        table2excel.export(document.querySelectorAll(".excel_table"));
+    });
+
+    /* $("#export_btn").click(function() {
+        var table2excel = new Table2Excel();
+        table2excel.export(document.querySelectorAll(".excel_table"));
+    }); */
+</script>
