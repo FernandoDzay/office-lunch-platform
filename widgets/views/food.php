@@ -30,6 +30,7 @@
         <?php else: ?>
             <form method="POST">
                 <input type="hidden" name="food_id" value="<?= $data['id'] ?>">
+                <input type="hidden" name="food_image" value="<?= $data['food_image'] ?>">
                 <input type="hidden" name="food" value="<?= $data['food'] ?>">
                 <input type="hidden" name="add_food" value="">
                 <button class="submit-button">
